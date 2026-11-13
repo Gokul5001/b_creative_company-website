@@ -1,0 +1,25 @@
+.work { background: var(--ink); }
+.work .title { color: #fff; }
+.work .eyebrow { color: var(--gold-hi); }
+.work__filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+.work__filters button { padding: 10px 20px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; background: transparent; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: all .25s ease; }
+.work__filters button:hover { color: #fff; border-color: #fff; }
+.work__filters button.is-on { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+.work__grid { columns: 3 320px; column-gap: 22px; }
+.card { position: relative; display: block; width: 100%; margin: 0 0 22px; padding: 0; break-inside: avoid; border: 0; border-radius: var(--radius); overflow: hidden; background: var(--ink); cursor: zoom-in; text-align: left; animation: card-in .6s ease both; }
+@keyframes card-in { from { opacity: 0; scale: .97; } to { opacity: 1; scale: 1; } }
+.card img { width: 100%; height: auto; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.card:hover img { transform: scale(1.06); }
+.card__shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 9, 5, 0.88), rgba(10, 9, 5, 0) 55%); }
+.card__meta { position: absolute; left: 24px; right: 24px; bottom: 22px; display: grid; gap: 6px; color: #fff; }
+.card__meta small { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-hi); }
+.card__meta b { font-family: var(--font-display); font-weight: 600; font-size: 21px; line-height: 1.2; }
+
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: rgba(10, 9, 5, 0.88); backdrop-filter: blur(6px); animation: card-in .25s ease both; }
+.lightbox figure { margin: 0; max-width: min(92vw, 880px); }
+.lightbox img { max-height: 78vh; width: auto; margin-inline: auto; border-radius: 14px; }
+.lightbox figcaption { display: grid; gap: 4px; margin-top: 16px; text-align: center; font-family: var(--font-display); font-size: 22px; color: #fff; }
+.lightbox figcaption small { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-hi); }
+.lightbox__x { position: absolute; top: 18px; right: 18px; display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
+.lightbox__x:hover { background: #fff; color: var(--ink); }

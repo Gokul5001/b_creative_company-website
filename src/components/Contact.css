@@ -1,0 +1,20 @@
+.contact__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); gap: 24px; align-items: start; }
+.contact__info { display: grid; gap: 14px; }
+.info { display: flex; align-items: center; gap: 18px; padding: 22px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; text-decoration: none; font-weight: 600; overflow-wrap: anywhere; transition: border-color .25s ease, transform .25s ease; }
+a.info:hover { border-color: var(--gold-hi); transform: translateX(4px); }
+.info > span { flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--ivory); color: var(--gold); }
+.info small { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+
+.form-card { padding: clamp(24px, 3.4vw, 44px); background: var(--paper); border: 1px solid var(--line); border-radius: 28px; }
+.form-card form { display: grid; gap: 18px; }
+.form-card label { display: grid; gap: 8px; }
+.form-card label > span { font-size: 13px; font-weight: 700; color: var(--ink); }
+.form-card input, .form-card select, .form-card textarea { width: 100%; padding: 15px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--ivory); transition: border-color .2s ease, background .2s ease; }
+.form-card textarea { resize: vertical; min-height: 120px; }
+.form-card input:focus, .form-card select:focus, .form-card textarea:focus { outline: none; border-color: var(--gold); background: #fff; }
+.form-card input[aria-invalid='true'] { border-color: #b3261e; }
+.form-card em { font-style: normal; font-size: 13px; color: #b3261e; }
+.form-card .btn { width: 100%; padding: 17px; margin-top: 4px; }
+.form-note { text-align: center; font-size: 13px; color: var(--mute); }
+
+@media (max-width: 900px) { .contact__grid { grid-template-columns: 1fr; } }

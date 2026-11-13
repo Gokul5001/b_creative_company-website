@@ -1,0 +1,9 @@
+.footer { background: var(--ink); color: rgba(255, 253, 248, 0.72); padding-top: clamp(48px, 6vw, 80px); }
+.footer a { text-decoration: none; transition: color .2s ease; }
+.footer a:hover { color: var(--gold-hi); }
+.footer__top { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 40px; padding-bottom: 48px; }
+.footer__brand { display: grid; gap: 18px; align-content: start; max-width: 36ch; font-size: 15px; }
+.footer nav { display: grid; gap: 10px; align-content: start; }
+.footer__contact { display: grid; gap: 10px; align-content: start; overflow-wrap: anywhere; }
+.footer__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 24px 0; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 13.5px; }
+@media (max-width: 800px) { .footer__top { grid-template-columns: 1fr; } }
