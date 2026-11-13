@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="wrap footer__top">
         <div className="footer__brand">
-          <Logo light />
+          <Logo light variant="full" className="footer__logo" />
           <p>Advertising and IT agency serving businesses in {offices.join(' and ')}.</p>
         </div>
         <nav aria-label="Footer">

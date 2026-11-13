@@ -25,7 +25,8 @@
 .hero__ring { position: absolute; inset: 4%; width: 92%; height: 92%; animation: ring-spin 38s linear infinite; }
 .hero__ring text { font-family: var(--font-body); font-weight: 600; font-size: 14.5px; letter-spacing: 0.34em; fill: var(--gold); }
 @keyframes ring-spin { to { transform: rotate(360deg); } }
-.hero__b { font-family: var(--font-display); font-weight: 600; font-size: clamp(140px, 20vw, 270px); line-height: 1; color: var(--ink); transform: translateY(-2%); letter-spacing: -0.06em; }
+.hero__logo { width: 44%; height: auto; }
+.hero__logo--light { display: none; }
 
 .hero__chip {
   position: absolute; display: grid; gap: 2px; padding: 16px 22px; border-radius: 18px;
@@ -49,7 +50,8 @@
 @media (max-width: 900px) {
   .hero::before { display: none; }
   .hero__disc { background: var(--ink); }
-  .hero__b { color: #fff; }
+  .hero__logo--dark { display: none; }
+  .hero__logo--light { display: block; }
   .hero__grid { grid-template-columns: 1fr; }
   .hero__visual { order: -1; width: min(78%, 380px); margin-bottom: 10px; }
   .hero__chip { padding: 12px 16px; }

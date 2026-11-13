@@ -1,12 +1,9 @@
 .logo { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); }
-.logo__mark {
-  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
-  font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1;
-  color: var(--gold-hi); background: var(--ink);
-}
+.logo__mark { display: block; height: 46px; width: auto; }
 .logo__word { font-weight: 700; font-size: 13px; letter-spacing: 0.42em; text-transform: uppercase; }
 .logo--light { color: var(--paper); }
-.logo--light .logo__mark { background: var(--gold-hi); color: var(--ink); }
+.logo-full { display: block; width: 100%; height: auto; }
+@media (max-width: 480px) { .logo__mark { height: 40px; } .logo__word { font-size: 12px; letter-spacing: 0.34em; } }
 
 .header { position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--head); transition: background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
 .header.is-scrolled, .header.is-open { background: rgba(255, 255, 255, 0.86); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }

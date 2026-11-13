@@ -1,5 +1,7 @@
 import './Hero.css'
 import { clients } from '../data/site'
+import logoFull from '../assets/logo-mark.png'
+import logoFullLight from '../assets/logo-mark-light.png'
 
 const arrow = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -31,7 +33,8 @@ export default function Hero() {
                 <textPath href="#ringPath" startOffset="0">SAUDI ARABIA · PAKISTAN · BRANDING · WEB · APPS · MARKETING · </textPath>
               </text>
             </svg>
-            <span className="hero__b">B</span>
+            <img className="hero__logo hero__logo--dark" src={logoFull} alt="" />
+            <img className="hero__logo hero__logo--light" src={logoFullLight} alt="" />
           </div>
           <div className="hero__chip hero__chip--a"><b>50+</b><span>Projects delivered</span></div>
           <div className="hero__chip hero__chip--b"><b>30+</b><span>Happy clients</span></div>
