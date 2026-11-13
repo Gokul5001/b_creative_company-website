@@ -1,7 +1,7 @@
 import './Hero.css'
-import { clients } from '../data/site'
-import logoFull from '../assets/logo-mark.png'
-import logoFullLight from '../assets/logo-mark-light.png'
+import { clients, stats } from '../data/site'
+import markDark from '../assets/logo-mark.png'
+import heroArt from '../assets/Corporate Analytics Meeting.png'
 
 const arrow = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -25,19 +25,23 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero__visual hero__in" style={{ '--d': '0.25s' }} aria-hidden="true">
-          <div className="hero__disc">
-            <svg className="hero__ring" viewBox="0 0 400 400">
-              <defs><path id="ringPath" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0" /></defs>
-              <text>
-                <textPath href="#ringPath" startOffset="0">SAUDI ARABIA · PAKISTAN · BRANDING · WEB · APPS · MARKETING · </textPath>
-              </text>
-            </svg>
-            <img className="hero__logo hero__logo--dark" src={logoFull} alt="" />
-            <img className="hero__logo hero__logo--light" src={logoFullLight} alt="" />
+        <div className="hero__visual hero__in" style={{ '--d': '0.25s' }}>
+          <img
+            className="hero__art"
+            src={heroArt}
+            alt="Team reviewing analytics and marketing performance charts"
+            width="1254"
+            height="1254"
+            fetchPriority="high"
+          />
+
+          <div className="hero__badge" aria-hidden="true"><img src={markDark} alt="" /></div>
+
+          <div className="hero__stats">
+            <div><b>{stats[0].n}{stats[0].suffix}</b><span>{stats[0].label}</span></div>
+            <i></i>
+            <div><b>{stats[1].n}{stats[1].suffix}</b><span>{stats[1].label}</span></div>
           </div>
-          <div className="hero__chip hero__chip--a"><b>50+</b><span>Projects delivered</span></div>
-          <div className="hero__chip hero__chip--b"><b>30+</b><span>Happy clients</span></div>
         </div>
       </div>
 
