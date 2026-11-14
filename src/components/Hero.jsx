@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './Hero.css'
 import { stats } from '../data/site'
 import abeer from '../assets/abeer.jpeg'
@@ -21,7 +22,6 @@ const clients = [
   { name: 'Saif', logo: saif },
   { name: 'Creative Solutions', logo: creativeSolutions },
 ]
-import markDark from '../assets/logo-mark.png'
 import heroArt from '../assets/Corporate Analytics Meeting.png'
 import heroVideo from '../assets/gemini_generated_video_313303ff.mp4'
 
@@ -29,17 +29,68 @@ const arrow = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
 )
 
+const words = ['branding', 'marketing', 'websites', 'apps', 'videos']
+const leadText = 'We combine innovation, strategy and technology to help businesses build a powerful online presence, and we stay with you as you grow.'
+
+const reduceMotion = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+function useTyping(total, speed = 22, startDelay = 700) {
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    if (reduceMotion()) { setCount(total); return }
+    let i = 0
+    let timer
+    const tick = () => {
+      i += 1
+      setCount(i)
+      if (i < total) timer = setTimeout(tick, speed)
+    }
+    timer = setTimeout(tick, startDelay)
+    return () => clearTimeout(timer)
+  }, [total, speed, startDelay])
+  return count
+}
+
+function useWordSlide(length, interval = 2600) {
+  const [state, setState] = useState({ idx: 0, prev: null })
+  useEffect(() => {
+    if (reduceMotion()) return
+    const t = setInterval(() => setState((s) => ({ idx: (s.idx + 1) % length, prev: s.idx })), interval)
+    return () => clearInterval(t)
+  }, [length, interval])
+  return state
+}
+
 export default function Hero() {
+  const typed = useTyping(leadText.length)
+  const done = typed >= leadText.length
+  const { idx, prev } = useWordSlide(words.length)
   return (
     <section id="top" className="hero">
       <div className="wrap hero__grid">
         <div className="hero__copy">
           <p className="eyebrow hero__in" style={{ '--d': '0.05s' }}>Advertising &amp; IT agency</p>
           <h1 className="hero__title hero__in" style={{ '--d': '0.15s' }}>
-            Creative <em>branding</em> and technology for businesses in Saudi Arabia and Pakistan.
+            Creative{' '}
+            <em className="hero__swap">
+              {words.map((w, i) => (
+                <span
+                  key={w}
+                  className={i === idx ? 'is-active' : i === prev ? 'is-prev' : undefined}
+                  aria-hidden={i !== idx || undefined}
+                >
+                  {w}
+                </span>
+              ))}
+            </em>{' '}
+            and technology for businesses in Saudi Arabia and Pakistan.
           </h1>
-          <p className="lead hero__in" style={{ '--d': '0.3s' }}>
-            We combine innovation, strategy and technology to help businesses build a powerful online presence, and we stay with you as you grow.
+          <p className="lead hero__in" style={{ '--d': '0.3s' }} aria-label={leadText}>
+            <span aria-hidden="true">
+              {leadText.slice(0, typed)}
+              {!done && <span className="hero__caret hero__caret--sm" />}
+              <span className="hero__ghost">{leadText.slice(typed)}</span>
+            </span>
           </p>
           <div className="hero__cta hero__in" style={{ '--d': '0.45s' }}>
             <a href="#contact" className="btn btn--dark">Get a Quote {arrow}</a>
@@ -59,8 +110,6 @@ export default function Hero() {
             preload="auto"
             aria-label="B-Creative services: AI video editing, application development, video editing, graphic designing, website development and digital marketing"
           />
-
-          <div className="hero__badge" aria-hidden="true"><img src={markDark} alt="" /></div>
 
           <div className="hero__stats">
             <div><b>{stats[0].n}{stats[0].suffix}</b><span>{stats[0].label}</span></div>

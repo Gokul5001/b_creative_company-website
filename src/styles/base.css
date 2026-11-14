@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
 :root {
   --ink: #0b0b0b;
   --ink-2: #1a1a1a;
@@ -8,8 +10,8 @@
   --text: #1c1c1c;
   --mute: #626262;
   --line: rgba(11, 11, 11, 0.12);
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --radius: 22px;
   --max: 1200px;
   --head: 76px;
@@ -44,7 +46,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(30px, 4.2vw, 50px);
+  font-size: clamp(26px, 3vw, 36px);
   line-height: 1.12;
   letter-spacing: -0.03em;
   color: var(--ink);
