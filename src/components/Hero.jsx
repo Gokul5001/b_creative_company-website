@@ -23,6 +23,7 @@ const clients = [
 ]
 import markDark from '../assets/logo-mark.png'
 import heroArt from '../assets/Corporate Analytics Meeting.png'
+import heroVideo from '../assets/gemini_generated_video_313303ff.mp4'
 
 const arrow = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -47,13 +48,16 @@ export default function Hero() {
         </div>
 
         <div className="hero__visual hero__in" style={{ '--d': '0.25s' }}>
-          <img
+          <video
             className="hero__art"
-            src={heroArt}
-            alt="Team reviewing analytics and marketing performance charts"
-            width="1254"
-            height="1254"
-            fetchPriority="high"
+            src={heroVideo}
+            poster={heroArt}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-label="B-Creative services: AI video editing, application development, video editing, graphic designing, website development and digital marketing"
           />
 
           <div className="hero__badge" aria-hidden="true"><img src={markDark} alt="" /></div>
