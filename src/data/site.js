@@ -11,9 +11,10 @@ export const brand = {
 }
 
 export const nav = [
+  { id: 'about', label: 'About' },
+  { id: 'approach', label: 'Approach' },
   { id: 'services', label: 'Services' },
   { id: 'work', label: 'Work' },
-  { id: 'about', label: 'About' },
   { id: 'why', label: 'Why Us' },
   { id: 'contact', label: 'Contact' },
 ]
