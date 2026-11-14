@@ -3,6 +3,15 @@ import { founder, team, offices } from '../data/site'
 import { Reveal } from '../Reveal'
 import { Call, Mail, Pin } from './Icons'
 import founderPhoto from '../assets/Professional Passport Portrait.png'
+import muhammadPhoto from '../assets/Muhammad.jpeg'
+import himraPhoto from '../assets/Himra.jpeg'
+import nabeelaPhoto from '../assets/Nabeela.jpeg'
+import meerabPhoto from '../assets/MeerabSaleem.png'
+import palwashaPhoto from '../assets/Palwasha Khan.jpeg'
+import zubariaPhoto from '../assets/Zubaria.png'
+
+// Team photos kept directly in src/assets, matched to the member ids in data/site.js.
+const memberPhotos = { 'bilal-mustafa': muhammadPhoto, himra: himraPhoto, nabeela: nabeelaPhoto, meerab: meerabPhoto, palwasha: palwashaPhoto, zubaria: zubariaPhoto }
 
 // Drop a photo in src/assets/team named after the member id (e.g. palwasha.jpg) and it is used automatically.
 const photos = import.meta.glob('../assets/team/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' })
@@ -47,12 +56,12 @@ export default function About() {
         <div className="team">
           {team.map((m, i) => (
             <Reveal as="article" className="member" key={m.id} delay={(i % 2) * 0.1}>
-              <Avatar id={m.id} name={m.name} />
+              <Avatar id={m.id} name={m.name} photo={memberPhotos[m.id]} />
               <div className="member__body">
                 <h4>{m.name}</h4>
                 <p className="member__role">{m.role}</p>
                 <ul>
-                  <li><Call width="17" height="17" /><a href={`tel:${m.phone.replace(/\s/g, '')}`}>{m.phone}</a></li>
+                  {m.phone && <li><Call width="17" height="17" /><a href={`tel:${m.phone.replace(/\s/g, '')}`}>{m.phone}</a></li>}
                   <li><Mail width="17" height="17" /><a href={`mailto:${m.email}`}>{m.email}</a></li>
                 </ul>
               </div>

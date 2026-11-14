@@ -17,13 +17,6 @@
 .hero__caret { display: inline-block; width: 3px; height: 0.9em; margin-left: 2px; vertical-align: -0.08em; background: var(--gold); animation: caret-blink 0.8s steps(1) infinite; }
 @keyframes caret-blink { 50% { opacity: 0; } }
 .hero__caret--sm { width: 2px; height: 1em; }
-.hero__swap { display: inline-grid; overflow: hidden; padding: 0 0.1em 0.18em 0; margin-bottom: -0.18em; vertical-align: top; }
-.hero__swap > span { grid-area: 1 / 1; opacity: 0; }
-.hero__swap > .is-active { opacity: 1; }
-.hero__swap > .is-active.slide { animation: word-in 0.6s cubic-bezier(.2,.7,.2,1) both; }
-.hero__swap > .is-prev { animation: word-out 0.6s cubic-bezier(.2,.7,.2,1) both; }
-@keyframes word-in { from { translate: 0 100%; opacity: 0; } to { translate: 0 0; opacity: 1; } }
-@keyframes word-out { from { translate: 0 0; opacity: 1; } to { translate: 0 -100%; opacity: 0; } }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
 
 .hero__in { animation: hero-in 1s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0s); }

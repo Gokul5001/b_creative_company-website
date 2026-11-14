@@ -76,7 +76,10 @@ export const team = [
   { id: 'bilal-mustafa', name: 'Muhammad Bilal Mustafa', role: 'Application Developer', phone: '+966 59 262 0965', email: 'itx.bmustafa@gmail.com' },
   { id: 'palwasha', name: 'Palwasha Khan', role: 'Website Developer', phone: '+971 50 239 3723', email: 'palwashasheikh229@gmail.com' },
   { id: 'zubaria', name: 'Zubaria Khalid', role: 'Graphic Designer', phone: '+92 326 5590894', email: 'zubariadesign@gmail.com' },
-  { id: 'akasha', name: 'Akasha Rahman', role: 'Social Media Manager', phone: '+971 50 236 4392', email: 'akasharehman@mail.com' },
+  // { id: 'akasha', name: 'Akasha Rahman', role: 'Social Media Manager', phone: '+971 50 236 4392', email: 'akasharehman@mail.com' },
+  { id: 'himra', name: 'Himra Imran', role: 'Graphic Designer', email: 'himraimran2000@gmail.com' },
+  { id: 'nabeela', name: 'Nabeela Jawad', role: 'Social Media Manager', email: 'nabilajawad333@gmail.com' },
+  { id: 'meerab', name: 'Meerab Saleem', role: 'Graphic Designer', email: 'meerabdesigner6@gmail.com' },
 ]
 
 export const offices = ['Saudi Arabia', 'Pakistan']
