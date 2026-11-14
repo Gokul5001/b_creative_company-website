@@ -22,7 +22,7 @@ const clients = [
   { name: 'Saif', logo: saif },
   { name: 'Creative Solutions', logo: creativeSolutions },
 ]
-import heroArt from '../assets/Corporate Analytics Meeting.png'
+// import heroArt from '../assets/Corporate Analytics Meeting.png'
 import heroVideo from '../assets/gemini_generated_video_313303ff.mp4'
 
 const arrow = (
@@ -99,7 +99,7 @@ export default function Hero() {
           <video
             className="hero__art"
             src={heroVideo}
-            poster={heroArt}
+            // poster={heroArt}
             autoPlay
             muted
             loop
