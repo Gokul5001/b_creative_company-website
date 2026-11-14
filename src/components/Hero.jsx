@@ -1,5 +1,26 @@
 import './Hero.css'
-import { clients, stats } from '../data/site'
+import { stats } from '../data/site'
+import abeer from '../assets/abeer.jpeg'
+import albaik from '../assets/albaik.jpeg'
+import cityUniversity from '../assets/city_university.jpeg'
+import creativeSolutions from '../assets/creative_solutions.jpeg'
+import hyundai from '../assets/hyundai.jpeg'
+import khanBuilders from '../assets/khanbuilders.jpeg'
+import markhar from '../assets/markhar.jpeg'
+import nadec from '../assets/nadec.jpeg'
+import saif from '../assets/saif.jpeg'
+
+const clients = [
+  { name: 'Albaik', logo: albaik },
+  { name: 'Hyundai', logo: hyundai },
+  { name: 'NADEC', logo: nadec },
+  { name: 'Abeer Medical Group', logo: abeer },
+  { name: 'City University', logo: cityUniversity },
+  { name: 'Khan Builders', logo: khanBuilders },
+  { name: 'Markhar', logo: markhar },
+  { name: 'Saif', logo: saif },
+  { name: 'Creative Solutions', logo: creativeSolutions },
+]
 import markDark from '../assets/logo-mark.png'
 import heroArt from '../assets/Corporate Analytics Meeting.png'
 
@@ -50,7 +71,11 @@ export default function Hero() {
           <p>Work delivered for</p>
           <div className="hero__marquee">
             <div className="hero__run">
-              {[...clients, ...clients].map((c, i) => <span key={i}>{c}</span>)}
+              {[...clients, ...clients].map((c, i) => (
+                <span key={i} className="hero__logo" aria-hidden={i >= clients.length || undefined}>
+                  <img src={c.logo} alt={c.name} height="48" loading="lazy" />
+                </span>
+              ))}
             </div>
           </div>
         </div>
