@@ -3,27 +3,29 @@
 .avatar { display: grid; place-items: center; flex: none; overflow: hidden; border-radius: 50%; background: var(--ink); color: var(--gold-hi); font-family: var(--font-display); box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--gold-hi); }
 .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
 .avatar--md { width: 88px; height: 88px; font-size: 32px; }
-/* Team members: portrait with an offset orange frame, animated */
-.member .avatar { --off: 12px; position: relative; width: 120px; height: 150px; margin: 0 var(--off) var(--off) 0; border-radius: 22px; overflow: visible; background: none; box-shadow: none; font-size: 38px; }
-.member .avatar::before { content: ''; position: absolute; inset: 0; z-index: 0; border: 2px solid var(--gold); border-radius: 22px; translate: var(--off) var(--off); transition: translate .45s cubic-bezier(.2,.7,.2,1); }
-.member .avatar img, .member .avatar > span { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 22px; transition: translate .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease; box-shadow: 0 16px 30px -16px rgba(11, 11, 11, 0.5); }
-.member .avatar img { object-position: center 15%; }
-.member .avatar > span { display: grid; place-items: center; background: var(--ink); color: var(--gold-hi); }
-.member:hover .avatar { --off: 18px; }
-.member:hover .avatar img, .member:hover .avatar > span { translate: -4px -4px; }
+/* Team members and founder: portrait with an offset orange frame, animated */
+:is(.member, .founder) .avatar { --off: 12px; position: relative; width: 120px; height: 150px; margin: 0 var(--off) var(--off) 0; border-radius: 22px; overflow: visible; background: none; box-shadow: none; font-size: 38px; }
+:is(.member, .founder) .avatar::before { content: ''; position: absolute; inset: 0; z-index: 0; border: 2px solid var(--gold); border-radius: 22px; translate: var(--off) var(--off); transition: translate .45s cubic-bezier(.2,.7,.2,1); }
+:is(.member, .founder) .avatar img, :is(.member, .founder) .avatar > span { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 22px; transition: translate .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease; box-shadow: 0 16px 30px -16px rgba(11, 11, 11, 0.5); }
+:is(.member, .founder) .avatar img { object-position: center 15%; }
+:is(.member, .founder) .avatar > span { display: grid; place-items: center; background: var(--ink); color: var(--gold-hi); }
+:is(.member, .founder):hover .avatar { --off: 18px; }
+:is(.member, .founder):hover .avatar img, :is(.member, .founder):hover .avatar > span { translate: -4px -4px; }
 
-.member.rv.in .avatar img, .member.rv.in .avatar > span { animation: photo-reveal 0.9s cubic-bezier(.2,.7,.2,1) 0.15s backwards; }
-.member.rv.in .avatar::before { animation: frame-in 0.9s cubic-bezier(.2,.7,.2,1) 0.35s backwards; }
+:is(.member, .founder).rv.in .avatar img, :is(.member, .founder).rv.in .avatar > span { animation: photo-reveal 0.9s cubic-bezier(.2,.7,.2,1) 0.15s backwards; }
+:is(.member, .founder).rv.in .avatar::before { animation: frame-in 0.9s cubic-bezier(.2,.7,.2,1) 0.35s backwards; }
 @keyframes photo-reveal { from { clip-path: inset(100% 0 0 0 round 22px); } to { clip-path: inset(0 0 0 0 round 22px); } }
 @keyframes frame-in { from { translate: 0 0; opacity: 0; } to { translate: var(--off) var(--off); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .member.rv.in .avatar img, .member.rv.in .avatar > span, .member.rv.in .avatar::before { animation: none; }
+  :is(.member, .founder).rv.in .avatar img, :is(.member, .founder).rv.in .avatar > span, :is(.member, .founder).rv.in .avatar::before { animation: none; }
 }
+/* Founder gets a larger portrait */
+.founder .avatar { width: 210px; height: 260px; margin: 0 var(--off) 34px 0; font-size: 64px; }
+.founder .avatar img { object-position: center 10%; }
 .avatar--lg { width: 190px; height: 190px; font-size: 64px; }
 
 .founder { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(32px, 5vw, 64px); background: var(--paper); border: 1px solid var(--line); border-radius: 30px; }
 .founder__who { display: grid; justify-items: center; gap: 8px; text-align: center; }
-.founder__who .avatar { margin-bottom: 14px; }
 .founder__who h3 { font-family: var(--font-display); font-weight: 600; font-size: 28px; color: var(--ink); }
 .founder__who p { font-size: 12.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
 .founder__bio { padding-left: clamp(24px, 4vw, 56px); border-left: 1px solid var(--line); }
