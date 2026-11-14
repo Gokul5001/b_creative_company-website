@@ -4,7 +4,7 @@
   --ink: #0b0b0b;
   --ink-2: #1a1a1a;
   --ivory: #fdfaf6;      /* page background: warm cream */
-  --paper: #fefcfa;      /* cards on the cream background */
+  --paper: #ffffff;      /* cards and light buttons */
   --gold: #e8590c;      /* deep orange: text accents, buttons on light */
   --gold-hi: #ff7a1a;   /* bright orange: accents on dark */
   --text: #1c1c1c;
@@ -68,7 +68,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .btn:hover { transform: translateY(-2px); }
 .btn--dark { background: var(--ink); color: var(--paper); }
 .btn--dark:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
-.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost { background: #fff; color: var(--ink); }
 .btn--ghost:hover { background: var(--ink); color: var(--paper); }
 .btn--gold { background: var(--gold-hi); border-color: var(--gold-hi); color: var(--ink); }
 .btn--gold:hover { background: var(--paper); border-color: var(--paper); }
