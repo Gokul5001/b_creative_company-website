@@ -6,7 +6,7 @@
 @media (max-width: 480px) { .logo__mark { height: 40px; } .logo__word { font-size: 12px; letter-spacing: 0.34em; } }
 
 .header { position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--head); transition: background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
-.header.is-scrolled, .header.is-open { background: rgba(255, 255, 255, 0.86); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.header.is-scrolled, .header.is-open { background: rgba(253, 250, 246, 0.88); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
 .header__in { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .header__logo { text-decoration: none; }
 

@@ -3,8 +3,8 @@
 :root {
   --ink: #0b0b0b;
   --ink-2: #1a1a1a;
-  --ivory: #ffffff;
-  --paper: #f5f4f2;
+  --ivory: #fdfaf6;      /* page background: warm cream */
+  --paper: #fefcfa;      /* cards on the cream background */
   --gold: #e8590c;      /* deep orange: text accents, buttons on light */
   --gold-hi: #ff7a1a;   /* bright orange: accents on dark */
   --text: #1c1c1c;
