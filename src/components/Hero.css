@@ -1,9 +1,5 @@
 .hero { position: relative; padding: calc(var(--head) + clamp(16px, 3vw, 44px)) 0 clamp(40px, 6vw, 70px); overflow: hidden;
   background-color: var(--ivory);
-  background-image:
-    linear-gradient(90deg, rgba(150, 120, 90, 0.07) 2px, transparent 2px),
-    linear-gradient(0deg, rgba(150, 120, 90, 0.07) 2px, transparent 2px);
-  background-size: 128px 128px; background-position: 80px 0;
 }
 
 .hero__grid { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
@@ -20,6 +16,8 @@
 .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
 
 .hero__in { animation: hero-in 1s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0s); }
+/* no leftover transform after the entrance, so the video can blend with the hero background */
+.hero__visual.hero__in { animation-fill-mode: backwards; }
 @keyframes hero-in { from { opacity: 0; translate: 0 26px; } to { opacity: 1; translate: 0 0; } }
 
 .hero__visual {
@@ -29,6 +27,7 @@
 }
 .hero__art {
   position: relative; z-index: 1; width: 100%; height: auto; object-fit: contain; border-radius: 24px;
+  mix-blend-mode: multiply; /* a white video background becomes see-through, so the hero grid shows behind the artwork */
 }
 
 
