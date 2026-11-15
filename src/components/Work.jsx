@@ -32,6 +32,10 @@ const Arrow = ({ dir }) => (
   </svg>
 )
 
+const Play = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
+)
+
 export default function Work() {
   const [cat, setCat] = useState('All')
   const [open, setOpen] = useState(null)
@@ -84,18 +88,31 @@ export default function Work() {
         >
           <div className="slider__view">
             <div className="slider__track" style={{ transform: `translateX(-${idx * 100}%)` }}>
-              {list.map((p, i) => (
-                <div className="slide" key={p.id} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${count}`} aria-hidden={i !== idx || undefined}>
-                  <span className="slide__bg" style={{ backgroundImage: `url(${img(p.image)})` }} aria-hidden="true"></span>
-                  <button className="slide__img" onClick={() => setOpen(p)} aria-label={`View ${p.title}`} tabIndex={i === idx ? 0 : -1}>
-                    {videoFor(p) ? (
-                      <video src={videoFor(p)} poster={img(p.image)} autoPlay muted loop playsInline preload="auto" aria-label={p.title} />
-                    ) : (
-                      <img src={img(p.image)} alt={p.title} draggable="false" />
-                    )}
-                  </button>
-                </div>
-              ))}
+              {list.map((p, i) => {
+                const video = videoFor(p)
+                return (
+                  <div className="slide" key={p.id} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${count}`} aria-hidden={i !== idx || undefined}>
+                    <button className={`slide__media ${video ? '' : 'slide__media--img'}`} onClick={() => setOpen(p)} aria-label={`View ${p.title}`} tabIndex={i === idx ? 0 : -1}>
+                      {video ? (
+                        <video src={video} poster={img(p.image)} autoPlay muted loop playsInline preload="auto" aria-label={p.title} />
+                      ) : (
+                        <img src={img(p.image)} alt={p.title} draggable="false" />
+                      )}
+                      <span className="slide__play"><Play />{video ? 'Watch with sound' : 'View project'}</span>
+                    </button>
+
+                    <div className="slide__text">
+                      <span className="slide__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                      <small>{p.category}</small>
+                      <h3>{p.title}</h3>
+                      <button className="btn btn--orange slide__cta" onClick={() => setOpen(p)} tabIndex={i === idx ? 0 : -1}>
+                        {video ? 'Watch full video' : 'View project'}
+                      </button>
+                      {count > 1 && <span className="slider__count">{String(i + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
@@ -106,16 +123,6 @@ export default function Work() {
             </>
           )}
         </div>
-
-        {list[idx] && (
-          <div className="slider__info" aria-live="polite">
-            <div>
-              <small>{list[idx].category}</small>
-              <b>{list[idx].title}</b>
-            </div>
-            {count > 1 && <span className="slider__count">{String(idx + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>}
-          </div>
-        )}
 
         {count > 1 && <div className="slider__dots">
           {list.map((p, i) => (
