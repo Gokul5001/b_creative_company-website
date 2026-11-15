@@ -36,27 +36,27 @@ export const clients = ['Albaik', 'Hyundai', 'NADEC', "L'Oréal Paris Hair Serum
 export const services = [
   {
     id: 'graphic',
-    title: 'Graphic Designing',
-    text: 'Engaging visuals, logos and branding materials that capture the essence of your brand.',
-    points: ['Logo and brand identity', 'Social media creatives', 'Packaging and print design'],
+    title: 'Brand & Graphic Design',
+    text: 'Distinctive visual identities and marketing creatives that communicate your brand with clarity and consistency.',
+    points: ['Logo and brand identity systems', 'Social media and campaign creatives', 'Packaging and print collateral'],
   },
   {
     id: 'web',
     title: 'Website Development',
-    text: 'Responsive, user-friendly websites that showcase your services and products.',
-    points: ['Business and corporate websites', 'Landing pages and online stores', 'Fast, search-friendly builds'],
+    text: 'High-performing, responsive websites engineered to present your business credibly and convert visitors into clients.',
+    points: ['Corporate and business websites', 'Landing pages and online stores', 'Fast, SEO-ready, mobile-first builds'],
   },
   {
     id: 'app',
     title: 'Application Development',
-    text: 'Custom mobile and web applications built around your business needs and customer engagement.',
-    points: ['Mobile and web apps', 'Dashboards and internal tools', 'Support after launch'],
+    text: 'Custom mobile and web applications built around your operations and the needs of your customers.',
+    points: ['Mobile and web applications', 'Dashboards and internal tools', 'Maintenance and post-launch support'],
   },
   {
     id: 'marketing',
     title: 'Digital Marketing',
-    text: 'Social media strategy and campaigns that boost your online presence and drive traffic.',
-    points: ['Social media strategy', 'Content and campaign management', 'Reporting and growth focus'],
+    text: 'Data-informed social media strategy and campaigns that grow your audience and deliver measurable results.',
+    points: ['Social media strategy and management', 'Content and campaign planning', 'Performance reporting and optimisation'],
   },
 ]
 
@@ -83,6 +83,7 @@ export const team = [
   { id: 'palwasha', name: 'Palwasha Khan', role: 'Website Developer', email: 'palwashasheikh229@gmail.com' },
   { id: 'zubaria', name: 'Zubaria Khalid', role: 'Graphic Designer', email: 'zubariadesign@gmail.com' },
   { id: 'gokul', name: 'Gokul Kannan', role: 'Website Developer', email: 'gokulkannankh@gmail.com' },
+  { id: 'tania', name: 'Tania Tanveer', role: 'Website Developer & Project Collaborator', email: 'taniatanveer658@gmail.com' },
   { id: 'himra', name: 'Himra Imran', role: 'Graphic Designer', email: 'himraimran2000@gmail.com' },
   { id: 'nabeela', name: 'Nabeela Jawad', role: 'Social Media Manager', email: 'nabilajawad333@gmail.com' },
   { id: 'meerab', name: 'Meerab Saleem', role: 'Graphic Designer', email: 'meerabdesigner6@gmail.com' },

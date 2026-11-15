@@ -1,19 +1,44 @@
-.services__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.svc {
-  position: relative; display: flex; flex-direction: column; gap: 14px; padding: clamp(28px, 3.4vw, 44px);
-  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
-  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+.sv { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr); gap: 24px; align-items: stretch; }
+
+/* ---- tab list ---- */
+.sv__tabs { display: grid; gap: 12px; align-content: start; }
+.sv__tab { position: relative; display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 14px; width: 100%; padding: 20px 22px; border: 1px solid var(--line); border-radius: 20px; background: #fff; text-align: left; cursor: pointer; overflow: hidden; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease; }
+.sv__tab:hover { transform: translateX(6px); border-color: var(--gold-hi); }
+.sv__tab.is-on { border-color: var(--gold); box-shadow: 0 22px 44px -26px rgba(232, 89, 12, 0.55); transform: translateX(10px); }
+.sv__tabnum { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--mute); }
+.sv__tabicon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--ivory); color: var(--gold); transition: background .3s ease, color .3s ease; }
+.sv__tab.is-on .sv__tabicon { background: var(--gold); color: #fff; }
+.sv__tabtitle { font-family: var(--font-display); font-weight: 600; font-size: 17px; line-height: 1.25; color: var(--ink); }
+.sv__tabarrow { color: var(--mute); opacity: 0; translate: -6px 0; transition: opacity .3s ease, translate .3s ease, color .3s ease; }
+.sv__tab.is-on .sv__tabarrow, .sv__tab:hover .sv__tabarrow { opacity: 1; translate: 0 0; color: var(--gold); }
+.sv__bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-hi)); transform-origin: left; animation: sv-progress var(--ms, 6000ms) linear both; }
+.sv__bar.is-paused { animation: none; }
+@keyframes sv-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ---- detail panel ---- */
+.sv__panel { position: relative; overflow: hidden; display: grid; padding: clamp(32px, 4.4vw, 60px); border-radius: 30px; background: var(--ink); color: #fff; min-height: 460px; }
+.sv__glow { position: absolute; top: -160px; right: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 26, 0.34), transparent 65%); pointer-events: none; animation: sv-glow 7s ease-in-out infinite alternate; }
+@keyframes sv-glow { to { translate: -40px 30px; scale: 1.15; } }
+.sv__content { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; animation: sv-in .7s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes sv-in { from { opacity: 0; translate: 24px 0; } to { opacity: 1; translate: 0 0; } }
+.sv__bignum { position: absolute; top: -12px; right: 0; font-family: var(--font-display); font-weight: 600; font-size: clamp(90px, 11vw, 150px); line-height: 1; color: #fff; opacity: 0.06; }
+.sv__icon { display: grid; place-items: center; width: 72px; height: 72px; margin-bottom: 6px; border-radius: 20px; background: rgba(255, 122, 26, 0.16); color: var(--gold-hi); animation: sv-pop .6s cubic-bezier(.2,.9,.3,1.3) .15s both; }
+@keyframes sv-pop { from { scale: .6; opacity: 0; } to { scale: 1; opacity: 1; } }
+.sv__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 2.8vw, 38px); line-height: 1.15; color: #fff; }
+.sv__text { max-width: 52ch; font-size: 16.5px; color: rgba(255, 255, 255, 0.72); }
+.sv__points { display: grid; gap: 12px; margin: 10px 0 14px; width: 100%; }
+.sv__points li { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; background: rgba(255, 255, 255, 0.04); font-size: 15px; font-weight: 600; animation: sv-in .6s cubic-bezier(.2,.7,.2,1) calc(var(--i) * .1s + .25s) both; transition: background .25s ease, border-color .25s ease; }
+.sv__points li:hover { background: rgba(255, 255, 255, 0.09); border-color: var(--gold-hi); }
+.sv__points li span { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--gold); color: #fff; }
+.sv__cta { margin-top: auto; }
+.sv__cta:hover { background: #fff; border-color: #fff; color: var(--ink); }
+
+@media (max-width: 900px) {
+  .sv { grid-template-columns: 1fr; }
+  .sv__tab:hover, .sv__tab.is-on { transform: none; }
+  .sv__panel { min-height: 0; }
 }
-.svc:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -28px rgba(11, 11, 11, 0.35); border-color: var(--gold-hi); }
-.svc__num { position: absolute; top: 14px; right: 26px; font-family: var(--font-display); font-size: clamp(70px, 8vw, 110px); line-height: 1; color: var(--ink); opacity: 0.06; }
-.svc__icon { display: grid; place-items: center; width: 60px; height: 60px; margin-bottom: 10px; border-radius: 16px; background: var(--ivory); color: var(--gold); transition: background .3s ease, color .3s ease; }
-.svc:hover .svc__icon { background: var(--ink); color: var(--gold-hi); }
-.svc__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(20px, 1.9vw, 24px); line-height: 1.15; color: var(--ink); }
-.svc__text { color: var(--mute); max-width: 46ch; }
-.svc__points { display: grid; gap: 9px; margin: 6px 0 12px; font-size: 14.5px; font-weight: 600; }
-.svc__points li { display: flex; align-items: center; gap: 10px; }
-.svc__points svg { color: var(--gold); }
-.svc__link { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 6px; font-weight: 700; font-size: 14.5px; text-decoration: none; color: var(--ink); }
-.svc__link svg { transition: translate .25s ease; }
-.svc__link:hover svg { translate: 3px -3px; }
-@media (max-width: 800px) { .services__grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .sv__glow, .sv__content, .sv__icon, .sv__points li, .sv__bar { animation: none; }
+  .sv__bar { transform: none; }
+}

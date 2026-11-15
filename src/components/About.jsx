@@ -5,6 +5,7 @@ import { Mail, Pin } from './Icons'
 import founderPhoto from '../assets/Professional Passport Portrait.png'
 import gokulPhoto from '../assets/profile_pic.png'
 import muhammadPhoto from '../assets/Muhammad.jpeg'
+import taniaPhoto from '../assets/Tania.jpeg'
 import himraPhoto from '../assets/Himra.jpeg'
 import nabeelaPhoto from '../assets/Nabeela.jpeg'
 import meerabPhoto from '../assets/MeerabSaleem.png'
@@ -12,7 +13,7 @@ import palwashaPhoto from '../assets/Palwasha Khan.jpeg'
 import zubariaPhoto from '../assets/Zubaria.png'
 
 // Team photos kept directly in src/assets, matched to the member ids in data/site.js.
-const memberPhotos = { 'bilal-mustafa': muhammadPhoto, gokul: gokulPhoto, himra: himraPhoto, nabeela: nabeelaPhoto, meerab: meerabPhoto, palwasha: palwashaPhoto, zubaria: zubariaPhoto }
+const memberPhotos = { 'bilal-mustafa': muhammadPhoto, gokul: gokulPhoto, tania: taniaPhoto, himra: himraPhoto, nabeela: nabeelaPhoto, meerab: meerabPhoto, palwasha: palwashaPhoto, zubaria: zubariaPhoto }
 
 // Drop a photo in src/assets/team named after the member id (e.g. palwasha.jpg) and it is used automatically.
 const photos = import.meta.glob('../assets/team/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' })
