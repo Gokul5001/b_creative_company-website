@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './Work.css'
 import { projects } from '../data/site'
 import { Reveal } from '../Reveal'
@@ -41,11 +41,25 @@ export default function Work() {
   const [open, setOpen] = useState(null)
   const list = useMemo(() => (cat === 'All' ? projects : projects.filter((p) => p.category === cat)), [cat])
 
-  const [idx, setIdx] = useState(0)
-  const [touchX, setTouchX] = useState(null)
-  const count = list.length
-  const go = (d) => setIdx((i) => (i + d + count) % count)
-  const pick = (c) => { setCat(c); setIdx(0) }
+  // horizontal row: arrows only appear when there is more to scroll to
+  const rowRef = useRef(null)
+  const [edge, setEdge] = useState({ left: false, right: false })
+  const measure = useCallback(() => {
+    const el = rowRef.current
+    if (!el) return
+    setEdge({ left: el.scrollLeft > 4, right: el.scrollLeft + el.clientWidth < el.scrollWidth - 4 })
+  }, [])
+  useEffect(() => {
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [measure, list])
+  const slide = (dir) => {
+    const el = rowRef.current
+    const card = el?.querySelector('.wk__card')
+    if (!el || !card) return
+    el.scrollBy({ left: dir * (card.offsetWidth + 24), behavior: 'smooth' })
+  }
 
   useEffect(() => {
     if (!open) return undefined
@@ -63,72 +77,42 @@ export default function Work() {
           <h2 className="title">Projects we are <em>proud of</em></h2>
         </Reveal>
 
-        {categories.length > 2 && (
-        <div className="work__filters" role="tablist" aria-label="Filter projects">
-          {categories.map((c) => (
-            <button key={c} role="tab" aria-selected={cat === c} className={cat === c ? 'is-on' : ''} onClick={() => pick(c)}>{c}</button>
-          ))}
-        </div>
+        {projects.length > 4 && categories.length > 2 && (
+          <div className="work__filters" role="tablist" aria-label="Filter projects">
+            {categories.map((c) => (
+              <button key={c} role="tab" aria-selected={cat === c} className={cat === c ? 'is-on' : ''} onClick={() => setCat(c)}>{c}</button>
+            ))}
+          </div>
         )}
 
-        <div
-          className="slider"
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="Projects"
-          tabIndex={0}
-          onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1) }}
-          onTouchStart={(e) => setTouchX(e.touches[0].clientX)}
-          onTouchEnd={(e) => {
-            if (touchX === null) return
-            const dx = e.changedTouches[0].clientX - touchX
-            if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1)
-            setTouchX(null)
-          }}
-        >
-          <div className="slider__view">
-            <div className="slider__track" style={{ transform: `translateX(-${idx * 100}%)` }}>
-              {list.map((p, i) => {
+        <div className="wk" role="region" aria-label="Projects">
+          <div className="wk__frame">
+            <div className="wk__row" ref={rowRef} onScroll={measure}>
+              {list.map((p) => {
                 const video = videoFor(p)
                 return (
-                  <div className="slide" key={p.id} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${count}`} aria-hidden={i !== idx || undefined}>
-                    <button className={`slide__media ${video ? '' : 'slide__media--img'}`} onClick={() => setOpen(p)} aria-label={`View ${p.title}`} tabIndex={i === idx ? 0 : -1}>
+                  <button key={p.id} className="wk__card" onClick={() => setOpen(p)} aria-label={`View ${p.title}`}>
+                    <span className="wk__media">
                       {video ? (
                         <video src={video} poster={img(p.image)} autoPlay muted loop playsInline preload="auto" aria-label={p.title} />
                       ) : (
-                        <img src={img(p.image)} alt={p.title} draggable="false" />
+                        <img src={img(p.image)} alt={p.title} loading="lazy" draggable="false" />
                       )}
-                      <span className="slide__play"><Play />{video ? 'Watch with sound' : 'View project'}</span>
-                    </button>
-
-                    <div className="slide__text">
-                      <span className="slide__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="wk__play"><Play />{video ? 'Watch with sound' : 'View project'}</span>
+                    </span>
+                    <span className="wk__meta">
                       <small>{p.category}</small>
-                      <h3>{p.title}</h3>
-                      <button className="btn btn--orange slide__cta" onClick={() => setOpen(p)} tabIndex={i === idx ? 0 : -1}>
-                        {video ? 'Watch full video' : 'View project'}
-                      </button>
-                      {count > 1 && <span className="slider__count">{String(i + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>}
-                    </div>
-                  </div>
+                      <b>{p.title}</b>
+                    </span>
+                  </button>
                 )
               })}
             </div>
+
+            {edge.left && <button className="wk__arrow wk__arrow--prev" onClick={() => slide(-1)} aria-label="Scroll to previous projects"><Arrow dir="left" /></button>}
+            {edge.right && <button className="wk__arrow wk__arrow--next" onClick={() => slide(1)} aria-label="Scroll to next projects"><Arrow dir="right" /></button>}
           </div>
-
-          {count > 1 && (
-            <>
-              <button className="slider__arrow slider__arrow--prev" onClick={() => go(-1)} aria-label="Previous project"><Arrow dir="left" /></button>
-              <button className="slider__arrow slider__arrow--next" onClick={() => go(1)} aria-label="Next project"><Arrow dir="right" /></button>
-            </>
-          )}
         </div>
-
-        {count > 1 && <div className="slider__dots">
-          {list.map((p, i) => (
-            <button key={p.id} className={i === idx ? 'is-on' : ''} onClick={() => setIdx(i)} aria-label={`Go to ${p.title}`}></button>
-          ))}
-        </div>}
       </div>
 
       {open && (
