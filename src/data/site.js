@@ -41,6 +41,12 @@ export const services = [
     points: ['Logo and brand identity systems', 'Social media and campaign creatives', 'Packaging and print collateral'],
   },
   {
+    id: 'video',
+    title: 'Video Editing',
+    text: 'Professional video production and editing that turns your story into engaging content for social media, advertising and corporate use.',
+    points: ['Promotional videos and ad edits', 'Reels, shorts and social media video', 'Motion graphics, captions and colour grading'],
+  },
+  {
     id: 'web',
     title: 'Website Development',
     text: 'High-performing, responsive websites engineered to present your business credibly and convert visitors into clients.',
@@ -120,4 +126,4 @@ export const achievements = [
   },
 ]
 
-export const formServices = ['Branding', 'Graphic Designing', 'Website Development', 'Application Development', 'Digital Marketing']
+export const formServices = ['Branding', 'Graphic Designing', 'Video Editing', 'Website Development', 'Application Development', 'Digital Marketing']
