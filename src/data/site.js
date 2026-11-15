@@ -41,12 +41,6 @@ export const services = [
     points: ['Logo and brand identity systems', 'Social media and campaign creatives', 'Packaging and print collateral'],
   },
   {
-    id: 'video',
-    title: 'Video Editing',
-    text: 'Professional video production and editing that turns your story into engaging content for social media, advertising and corporate use.',
-    points: ['Promotional videos and ad edits', 'Reels, shorts and social media video', 'Motion graphics, captions and colour grading'],
-  },
-  {
     id: 'web',
     title: 'Website Development',
     text: 'High-performing, responsive websites engineered to present your business credibly and convert visitors into clients.',
@@ -59,6 +53,12 @@ export const services = [
     points: ['Mobile and web applications', 'Dashboards and internal tools', 'Maintenance and post-launch support'],
   },
   {
+    id: 'video',
+    title: 'Video Editing & Production',
+    text: 'Polished promotional videos, reels and brand films that tell your story and hold your audience\'s attention.',
+    points: ['Promotional and corporate videos', 'Social media reels and short-form content', 'Motion graphics and post-production'],
+  },
+  {
     id: 'marketing',
     title: 'Digital Marketing',
     text: 'Data-informed social media strategy and campaigns that grow your audience and deliver measurable results.',
@@ -67,14 +67,15 @@ export const services = [
 ]
 
 export const projects = [
-  { id: 'obhur', title: 'Deal Real Estate: Obhur Living 2', category: 'Real Estate', image: 'obhur-living-2' },
-  { id: 'saif', title: 'Saif Group of Companies: Saif Sky Rise', category: 'Real Estate', image: 'saif-sky-rise' },
-  { id: 'kitchen', title: 'Delicious Kitchen', category: 'Food', image: 'delicious-kitchen' },
-  { id: 'albaik', title: 'Albaik Chips', category: 'Food', image: 'albaik-chips' },
-  { id: 'aurora', title: 'Aurora Ring Designs', category: 'Jewelry', image: 'aurora-ring' },
-  { id: 'loreal', title: "L'Oréal Paris Hair Serum", category: 'Beauty', image: 'loreal-serum' },
-  { id: 'dental', title: 'Dental Care', category: 'Healthcare', image: 'dental-care' },
-  { id: 'abeer', title: 'Abeer Medical Group', category: 'Healthcare', image: 'abeer-medical' },
+  {
+    id: 'markhor-drink',
+    title: 'Markhor Stimulant Drink',
+    client: 'Markhor Group of Companies',
+    category: 'Food & Beverage',
+    image: 'markhor-drink',
+    description: 'Product ad for the Markhor stimulant drink with Arabic-language branding, a deep green palette and a skyline motif running along the can.',
+    deliverables: ['Product ad', 'Arabic typography'],
+  },
 ]
 
 export const founder = {
@@ -126,4 +127,4 @@ export const achievements = [
   },
 ]
 
-export const formServices = ['Branding', 'Graphic Designing', 'Video Editing', 'Website Development', 'Application Development', 'Digital Marketing']
+export const formServices = ['Branding', 'Graphic Designing', 'Website Development', 'Application Development', 'Video Editing', 'Digital Marketing']

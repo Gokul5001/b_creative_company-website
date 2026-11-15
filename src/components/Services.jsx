@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import './Services.css'
 import { services } from '../data/site'
 import { Reveal } from '../Reveal'
-import { Pen, Video, Globe, Phone, Share, Arrow, Check } from './Icons'
+import { Pen, Globe, Phone, Video, Share, Arrow, Check } from './Icons'
 
-const icons = { graphic: Pen, video: Video, web: Globe, app: Phone, marketing: Share }
+const icons = { graphic: Pen, web: Globe, app: Phone, video: Video, marketing: Share }
 const INTERVAL = 6000
 const reduce = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 

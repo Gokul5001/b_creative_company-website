@@ -4,9 +4,13 @@ import { projects } from '../data/site'
 import { Reveal } from '../Reveal'
 import { Close } from './Icons'
 
-// every webp in src/assets/work, keyed by file name without extension
-const files = import.meta.glob('../assets/work/*.webp', { eager: true, query: '?url', import: 'default' })
-const img = (name) => files[`../assets/work/${name}.webp`]
+// project images: everything in src/assets/work plus loose images in src/assets, keyed by file name without extension
+const found = {
+  ...import.meta.glob('../assets/*.{png,jpg,jpeg,webp}', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../assets/work/*.{png,jpg,jpeg,webp}', { eager: true, query: '?url', import: 'default' }),
+}
+const files = Object.fromEntries(Object.entries(found).map(([k, v]) => [k.split('/').pop().replace(/\.[^.]+$/, ''), v]))
+const img = (name) => files[name]
 
 const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
 
@@ -43,12 +47,13 @@ export default function Work() {
           <h2 className="title">Projects we are <em>proud of</em></h2>
         </Reveal>
 
+        {categories.length > 2 && (
         <div className="work__filters" role="tablist" aria-label="Filter projects">
           {categories.map((c) => (
             <button key={c} role="tab" aria-selected={cat === c} className={cat === c ? 'is-on' : ''} onClick={() => pick(c)}>{c}</button>
           ))}
         </div>
-
+        )}
 
         <div
           className="slider"
@@ -78,8 +83,12 @@ export default function Work() {
             </div>
           </div>
 
-          <button className="slider__arrow slider__arrow--prev" onClick={() => go(-1)} aria-label="Previous project"><Arrow dir="left" /></button>
-          <button className="slider__arrow slider__arrow--next" onClick={() => go(1)} aria-label="Next project"><Arrow dir="right" /></button>
+          {count > 1 && (
+            <>
+              <button className="slider__arrow slider__arrow--prev" onClick={() => go(-1)} aria-label="Previous project"><Arrow dir="left" /></button>
+              <button className="slider__arrow slider__arrow--next" onClick={() => go(1)} aria-label="Next project"><Arrow dir="right" /></button>
+            </>
+          )}
         </div>
 
         {list[idx] && (
@@ -87,16 +96,21 @@ export default function Work() {
             <div>
               <small>{list[idx].category}</small>
               <b>{list[idx].title}</b>
+              {list[idx].client && <em className="slider__client">{list[idx].client}</em>}
+              {list[idx].description && <p className="slider__desc">{list[idx].description}</p>}
+              {list[idx].deliverables && (
+                <ul className="slider__tags">{list[idx].deliverables.map((d) => <li key={d}>{d}</li>)}</ul>
+              )}
             </div>
-            <span className="slider__count">{String(idx + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>
+            {count > 1 && <span className="slider__count">{String(idx + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>}
           </div>
         )}
 
-        <div className="slider__dots">
+        {count > 1 && <div className="slider__dots">
           {list.map((p, i) => (
             <button key={p.id} className={i === idx ? 'is-on' : ''} onClick={() => setIdx(i)} aria-label={`Go to ${p.title}`}></button>
           ))}
-        </div>
+        </div>}
       </div>
 
       {open && (

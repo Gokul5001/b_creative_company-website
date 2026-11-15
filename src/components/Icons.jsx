@@ -9,6 +9,9 @@ export const Globe = (p) => (
 export const Phone = (p) => (
   <svg {...base} {...p}><rect x="9" y="3" width="14" height="26" rx="3" /><path d="M14 25h4" /></svg>
 )
+export const Video = (p) => (
+  <svg {...base} {...p}><rect x="4" y="6" width="24" height="20" rx="3" /><path d="M13 12l7 4-7 4z" /><path d="M4 11h3M4 16h3M4 21h3M25 11h3M25 16h3M25 21h3" /></svg>
+)
 export const Share = (p) => (
   <svg {...base} {...p}><circle cx="9" cy="16" r="3.5" /><circle cx="23" cy="8" r="3.5" /><circle cx="23" cy="24" r="3.5" /><path d="M12 14.5l8-5M12 17.5l8 5" /></svg>
 )
@@ -43,12 +46,4 @@ export const Instagram = (p) => (
 )
 export const LinkedIn = (p) => (
   <svg {...fill} {...p}><path d="M6.5 9h-3v11h3zM5 4a1.8 1.8 0 100 3.6A1.8 1.8 0 005 4zM20.5 20v-6.2c0-3-1.6-4.4-3.8-4.4-1.7 0-2.5.9-3 1.6V9h-3v11h3v-6c0-1.6.8-2.5 2-2.5s1.8.9 1.8 2.5V20z" /></svg>
-)
-
-// Paste this into components/Icons.jsx (match the style of your existing icons such as Pen / Globe).
-export const Video = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect x="3" y="5" width="18" height="14" rx="2.5" />
-    <path d="M10 9.5v5l4.5-2.5z" />
-  </svg>
 )
