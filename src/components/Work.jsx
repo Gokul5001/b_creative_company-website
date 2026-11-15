@@ -32,13 +32,38 @@ const Arrow = ({ dir }) => (
   </svg>
 )
 
-const Play = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
+const Play = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
 )
+
+function VideoMedia({ title, src, poster, playing, onPlay, onStop }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    if (playing) {
+      v.muted = false
+      v.play().catch(() => {})
+    } else {
+      v.pause()
+    }
+  }, [playing])
+  return (
+    <>
+      <video ref={ref} src={src} poster={poster} preload="metadata" playsInline controls={playing} onEnded={onStop} aria-label={title} />
+      {!playing && (
+        <button className="wk__playbtn" onClick={onPlay} aria-label={`Play ${title}`}>
+          <Play size={26} />
+        </button>
+      )}
+    </>
+  )
+}
 
 export default function Work() {
   const [cat, setCat] = useState('All')
   const [open, setOpen] = useState(null)
+  const [playing, setPlaying] = useState(null)
   const list = useMemo(() => (cat === 'All' ? projects : projects.filter((p) => p.category === cat)), [cat])
 
   // horizontal row: arrows only appear when there is more to scroll to
@@ -91,20 +116,29 @@ export default function Work() {
               {list.map((p) => {
                 const video = videoFor(p)
                 return (
-                  <button key={p.id} className="wk__card" onClick={() => setOpen(p)} aria-label={`View ${p.title}`}>
-                    <span className="wk__media">
+                  <div key={p.id} className="wk__card">
+                    <div className={`wk__media ${playing === p.id ? 'is-playing' : ''}`}>
                       {video ? (
-                        <video src={video} poster={img(p.image)} autoPlay muted loop playsInline preload="auto" aria-label={p.title} />
+                        <VideoMedia
+                          title={p.title}
+                          src={video}
+                          poster={img(p.image)}
+                          playing={playing === p.id}
+                          onPlay={() => setPlaying(p.id)}
+                          onStop={() => setPlaying(null)}
+                        />
                       ) : (
-                        <img src={img(p.image)} alt={p.title} loading="lazy" draggable="false" />
+                        <button className="wk__imgbtn" onClick={() => setOpen(p)} aria-label={`View ${p.title}`}>
+                          <img src={img(p.image)} alt={p.title} loading="lazy" draggable="false" />
+                          <span className="wk__play"><Play />View project</span>
+                        </button>
                       )}
-                      <span className="wk__play"><Play />{video ? 'Watch with sound' : 'View project'}</span>
-                    </span>
+                    </div>
                     <span className="wk__meta">
                       <small>{p.category}</small>
                       <b>{p.title}</b>
                     </span>
-                  </button>
+                  </div>
                 )
               })}
             </div>
