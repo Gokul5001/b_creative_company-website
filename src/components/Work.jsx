@@ -12,6 +12,18 @@ const found = {
 const files = Object.fromEntries(Object.entries(found).map(([k, v]) => [k.split('/').pop().replace(/\.[^.]+$/, ''), v]))
 const img = (name) => files[name]
 
+// project videos: loose .mp4 files in src/assets. Uses src/assets/<name>.mp4, or any mp4 whose file name contains the first word of the project name.
+const videoFiles = Object.fromEntries(
+  Object.entries(import.meta.glob('../assets/*.mp4', { eager: true, query: '?url', import: 'default' }))
+    .map(([k, v]) => [k.split('/').pop().replace(/\.mp4$/, ''), v]),
+)
+const videoFor = (p) => {
+  if (!p.video) return undefined
+  if (videoFiles[p.video]) return videoFiles[p.video]
+  const key = p.video.split('-')[0].toLowerCase()
+  return Object.entries(videoFiles).find(([k]) => k.toLowerCase().includes(key))?.[1]
+}
+
 const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
 
 const Arrow = ({ dir }) => (
@@ -76,7 +88,11 @@ export default function Work() {
                 <div className="slide" key={p.id} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${count}`} aria-hidden={i !== idx || undefined}>
                   <span className="slide__bg" style={{ backgroundImage: `url(${img(p.image)})` }} aria-hidden="true"></span>
                   <button className="slide__img" onClick={() => setOpen(p)} aria-label={`View ${p.title}`} tabIndex={i === idx ? 0 : -1}>
-                    <img src={img(p.image)} alt={p.title} draggable="false" />
+                    {videoFor(p) ? (
+                      <video src={videoFor(p)} poster={img(p.image)} autoPlay muted loop playsInline preload="auto" aria-label={p.title} />
+                    ) : (
+                      <img src={img(p.image)} alt={p.title} draggable="false" />
+                    )}
                   </button>
                 </div>
               ))}
@@ -96,11 +112,6 @@ export default function Work() {
             <div>
               <small>{list[idx].category}</small>
               <b>{list[idx].title}</b>
-              {list[idx].client && <em className="slider__client">{list[idx].client}</em>}
-              {list[idx].description && <p className="slider__desc">{list[idx].description}</p>}
-              {list[idx].deliverables && (
-                <ul className="slider__tags">{list[idx].deliverables.map((d) => <li key={d}>{d}</li>)}</ul>
-              )}
             </div>
             {count > 1 && <span className="slider__count">{String(idx + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}</span>}
           </div>
@@ -117,7 +128,11 @@ export default function Work() {
         <div className="lightbox" role="dialog" aria-modal="true" aria-label={open.title} onClick={() => setOpen(null)}>
           <button className="lightbox__x" aria-label="Close" onClick={() => setOpen(null)}><Close /></button>
           <figure onClick={(e) => e.stopPropagation()}>
-            <img src={img(open.image)} alt={open.title} />
+            {videoFor(open) ? (
+              <video src={videoFor(open)} poster={img(open.image)} controls autoPlay loop playsInline />
+            ) : (
+              <img src={img(open.image)} alt={open.title} />
+            )}
             <figcaption><small>{open.category}</small>{open.title}</figcaption>
           </figure>
         </div>

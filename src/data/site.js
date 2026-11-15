@@ -70,11 +70,9 @@ export const projects = [
   {
     id: 'markhor-drink',
     title: 'Markhor Stimulant Drink',
-    client: 'Markhor Group of Companies',
     category: 'Food & Beverage',
     image: 'markhor-drink',
-    description: 'Product ad for the Markhor stimulant drink with Arabic-language branding, a deep green palette and a skyline motif running along the can.',
-    deliverables: ['Product ad', 'Arabic typography'],
+    video: 'markhor-drink',
   },
 ]
 
