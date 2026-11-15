@@ -74,6 +74,13 @@ export const projects = [
     image: 'markhor-drink',
     video: 'markhor-drink',
   },
+  {
+    id: 'saif-sky-rise',
+    title: 'Saif Group of Companies: Saif Sky Rise',
+    category: 'Real Estate',
+    image: 'saif-sky-rise',
+    video: 'saif-sky-rise',
+  },
 ]
 
 export const founder = {

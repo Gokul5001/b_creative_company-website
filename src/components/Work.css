@@ -1,7 +1,8 @@
 .work { background: var(--ink); }
 .work .title { color: #fff; }
 .work .eyebrow { color: var(--gold-hi); }
-.work__filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+.work .sec-head { margin-bottom: 24px; }
+.work__filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
 .work__filters button { padding: 10px 20px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; background: transparent; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: all .25s ease; }
 .work__filters button:hover { color: #fff; border-color: #fff; }
 .work__filters button.is-on { background: var(--gold); border-color: var(--gold); color: #fff; }
