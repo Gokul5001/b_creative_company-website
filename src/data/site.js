@@ -91,19 +91,18 @@ export const team = [
 export const offices = ['Saudi Arabia', 'Pakistan']
 
 export const approach = [
-  { title: 'Understand', text: 'We deeply understand your business, vision and target audience.' },
-  { title: 'Strategize', text: 'We create a clear, result-driven plan tailored to your goals.' },
-  { title: 'Create', text: 'Our creative team executes the plan with innovation and precision.' },
-  { title: 'Refine', text: 'We review, get your feedback and perfect it to meet quality standards.' },
-  { title: 'Deliver & Support', text: 'We deliver on time and provide continuous support for growth.' },
+  { title: 'Discovery', text: 'We begin by studying your business, objectives and target audience to build a clear foundation for the engagement.' },
+  { title: 'Strategy', text: 'We develop a focused, results-oriented plan aligned with your goals, market and budget.' },
+  { title: 'Execution', text: 'Our specialists carry out the plan with creativity, technical precision and attention to detail.' },
+  { title: 'Review & Refinement', text: 'We present the work for your feedback and refine it until it meets the agreed quality standards.' },
+  { title: 'Delivery & Support', text: 'We deliver on schedule and provide ongoing support to sustain your growth after launch.' },
 ]
-
 export const benefits = [
-  { title: 'Dual Presence Advantage', text: 'Strong understanding of both Saudi and Pakistani markets.' },
-  { title: 'Quality With Affordability', text: 'Premium work at the most competitive prices.' },
-  { title: 'On-Time & Transparent', text: 'Clear communication and timely delivery, always.' },
-  { title: 'Growth Focused', text: 'We focus on your business growth, not just completing a task.' },
-  { title: 'Long-Term Partnership', text: 'We become your trusted creative partner for future success.' },
+  { title: 'Presence in Two Markets', text: 'Established understanding of the business landscape in both Saudi Arabia and Pakistan.' },
+  { title: 'Quality at Competitive Value', text: 'Premium-standard work delivered at competitive, transparent pricing.' },
+  { title: 'Timely, Transparent Delivery', text: 'Clear communication at every stage and reliable adherence to agreed timelines.' },
+  { title: 'Focus on Business Growth', text: 'Our work is measured by its contribution to your growth, not by tasks completed.' },
+  { title: 'Long-Term Partnership', text: 'We aim to be a dependable strategic partner as your business evolves.' },
 ]
 
 export const achievements = [
