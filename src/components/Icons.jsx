@@ -33,3 +33,14 @@ export const WhatsApp = (p) => (
 export const Close = (p) => (
   <svg {...base} {...p}><path d="M7 7l18 18M25 7L7 25" /></svg>
 )
+
+const fill = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': true }
+export const Facebook = (p) => (
+  <svg {...fill} {...p}><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8.2v3h2.5V21z" /></svg>
+)
+export const Instagram = (p) => (
+  <svg {...fill} fill="none" stroke="currentColor" strokeWidth="1.8" {...p}><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" /></svg>
+)
+export const LinkedIn = (p) => (
+  <svg {...fill} {...p}><path d="M6.5 9h-3v11h3zM5 4a1.8 1.8 0 100 3.6A1.8 1.8 0 005 4zM20.5 20v-6.2c0-3-1.6-4.4-3.8-4.4-1.7 0-2.5.9-3 1.6V9h-3v11h3v-6c0-1.6.8-2.5 2-2.5s1.8.9 1.8 2.5V20z" /></svg>
+)

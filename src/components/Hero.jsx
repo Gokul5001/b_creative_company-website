@@ -22,7 +22,7 @@ const clients = [
   { name: 'Saif', logo: saif },
   { name: 'Creative Solutions', logo: creativeSolutions },
 ]
-import heroImage from '../assets/Developer Skills Robot Mascot Infographic.png'
+import heroImage from '../assets/hero_image.jpeg'
 
 const arrow = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -111,12 +111,12 @@ export default function Hero() {
 
       <div className="wrap">
         <div className="hero__clients">
-          <p>Work delivered for</p>
+          <p>Trusted by leading brands</p>
           <div className="hero__marquee">
             <div className="hero__run">
               {[...clients, ...clients].map((c, i) => (
                 <span key={i} className="hero__logo" aria-hidden={i >= clients.length || undefined}>
-                  <img src={c.logo} alt={c.name} height="48" loading="lazy" />
+                  <img src={c.logo} alt={c.name} loading="lazy" />
                 </span>
               ))}
             </div>

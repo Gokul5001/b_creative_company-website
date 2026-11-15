@@ -1,6 +1,9 @@
 import './Footer.css'
 import Logo from './Logo'
-import { nav, brand, offices } from '../data/site'
+import { nav, brand, offices, socials } from '../data/site'
+import { Facebook, Instagram, LinkedIn } from './Icons'
+
+const socialIcons = { facebook: Facebook, instagram: Instagram, linkedin: LinkedIn }
 
 export default function Footer() {
   return (
@@ -16,6 +19,12 @@ export default function Footer() {
         <div className="footer__contact">
           <a href={`tel:${brand.phone}`}>{brand.phoneDisplay}</a>
           <a href={`mailto:${brand.email}`}>{brand.email}</a>
+          <div className="footer__social">
+            {socials.map((s) => {
+              const Icon = socialIcons[s.id]
+              return <a key={s.id} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label}><Icon /></a>
+            })}
+          </div>
         </div>
       </div>
       <div className="wrap footer__base">

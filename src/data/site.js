@@ -10,6 +10,12 @@ export const brand = {
   address: 'Hayee Shatee 1, Cornich, Jeddah, Saudi Arabia',
 }
 
+export const socials = [
+  { id: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61573301126208' },
+  { id: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/bcreative.sa' },
+  { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/b-creative-network-agency-137a86445/' },
+]
+
 export const nav = [
   { id: 'about', label: 'About' },
   { id: 'approach', label: 'Approach' },
