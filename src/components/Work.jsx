@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './Work.css'
-import { projects, websites } from '../data/site'
+import { projects, designs, websites } from '../data/site'
 import { Reveal } from '../Reveal'
 import { useInView } from '../hooks'
 import { Close } from './Icons'
@@ -181,6 +181,24 @@ export default function Work() {
             {edge.right && <button className="wk__arrow wk__arrow--next" onClick={() => slide(1)} aria-label="Scroll to next projects"><Arrow dir="right" /></button>}
           </div>
         </div>
+
+        <Reveal className="gd">
+          <p className="eyebrow">Our work</p>
+          <TypedHeading text="GRAPHIC DESIGN PROJECTS" accent="DESIGN" />
+          <div className="gd__frame">
+            <div className="gd__grid">
+              {designs.map((d) => (
+                <div key={d.id} className="gd__card">
+                  <button className="gd__media" onClick={() => setOpen(d)} aria-label={`View ${d.title}`}>
+                    <img src={img(d.image)} alt={d.title} loading="lazy" draggable="false" />
+                    <span className="wk__play"><Play />View design</span>
+                  </button>
+                  <span className="wk__meta"><small>{d.category}</small><b>{d.title}</b></span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
 
         <Reveal className="web">
           <p className="eyebrow">Our work</p>

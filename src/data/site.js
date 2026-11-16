@@ -97,6 +97,13 @@ export const projects = [
   },
 ]
 
+// graphic design projects: image = file name (no extension) in src/assets/work
+export const designs = [
+  { id: 'dental-care', title: 'Dental Care', category: 'Healthcare & Beauty', image: 'dental-care' },
+  { id: 'aurora-ring', title: 'A Spark of Royalty', category: 'Jewellery', image: 'aurora-ring' },
+  { id: 'loreal-serum', title: 'Drops of Shine', category: 'Healthcare & Beauty', image: 'loreal-serum' },
+]
+
 export const websites = [
   { id: 'saif-group', title: 'Saif Group', category: 'Real Estate', url: 'https://thesaifgroup.com/', image: 'web-saif-group', hue: '#1d3557' },
   { id: 'markhor-drinks', title: 'Markhor Drinks', category: 'Food & Beverage', url: 'https://markhordrinks.com', image: 'web-markhor-drinks', hue: '#0f5132' },
