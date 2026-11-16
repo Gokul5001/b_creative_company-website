@@ -20,8 +20,8 @@ const videoFiles = Object.fromEntries(
 const videoFor = (p) => {
   if (!p.video) return undefined
   if (videoFiles[p.video]) return videoFiles[p.video]
-  const key = p.video.split('-')[0].toLowerCase()
-  return Object.entries(videoFiles).find(([k]) => k.toLowerCase().includes(key))?.[1]
+  const key = p.video.toLowerCase()
+  return Object.entries(videoFiles).find(([name]) => name.toLowerCase().includes(key))?.[1]
 }
 
 const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
@@ -36,7 +36,7 @@ const Play = ({ size = 14 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
 )
 
-function VideoMedia({ title, src, poster, playing, onPlay, onStop }) {
+function VideoMedia({ title, src, poster, playing, onPlay, onStop, onMeta }) {
   const ref = useRef(null)
   useEffect(() => {
     const v = ref.current
@@ -50,7 +50,7 @@ function VideoMedia({ title, src, poster, playing, onPlay, onStop }) {
   }, [playing])
   return (
     <>
-      <video ref={ref} src={src} poster={poster} preload="metadata" playsInline controls={playing} onEnded={onStop} aria-label={title} />
+      <video ref={ref} src={`${src}#t=0.1`} poster={poster} preload="metadata" playsInline controls={playing} onEnded={onStop} onLoadedMetadata={(e) => onMeta(e.currentTarget.videoWidth / e.currentTarget.videoHeight)} aria-label={title} />
       {!playing && (
         <button className="wk__playbtn" onClick={onPlay} aria-label={`Play ${title}`}>
           <Play size={26} />
@@ -64,6 +64,7 @@ export default function Work() {
   const [cat, setCat] = useState('All')
   const [open, setOpen] = useState(null)
   const [playing, setPlaying] = useState(null)
+  const [ratios, setRatios] = useState({}) // real width / height of each video, read from the file
   const list = useMemo(() => (cat === 'All' ? projects : projects.filter((p) => p.category === cat)), [cat])
 
   // horizontal row: arrows only appear when there is more to scroll to
@@ -78,7 +79,7 @@ export default function Work() {
     measure()
     window.addEventListener('resize', measure)
     return () => window.removeEventListener('resize', measure)
-  }, [measure, list])
+  }, [measure, list, ratios])
   const slide = (dir) => {
     const el = rowRef.current
     const card = el?.querySelector('.wk__card')
@@ -115,9 +116,14 @@ export default function Work() {
             <div className="wk__row" ref={rowRef} onScroll={measure}>
               {list.map((p) => {
                 const video = videoFor(p)
+                const ratio = ratios[p.id] || 9 / 16
+                const wide = ratio > 1
                 return (
                   <div key={p.id} className="wk__card">
-                    <div className={`wk__media ${playing === p.id ? 'is-playing' : ''}`}>
+                    <div
+                      className={`wk__media ${playing === p.id ? 'is-playing' : ''}`}
+                      style={{ '--ar': ratio, '--k': wide ? 0.62 : 1, '--wk': wide ? 1.45 : 1 }}
+                    >
                       {video ? (
                         <VideoMedia
                           title={p.title}
@@ -126,6 +132,7 @@ export default function Work() {
                           playing={playing === p.id}
                           onPlay={() => setPlaying(p.id)}
                           onStop={() => setPlaying(null)}
+                          onMeta={(r) => r && setRatios((m) => (m[p.id] === r ? m : { ...m, [p.id]: r }))}
                         />
                       ) : (
                         <button className="wk__imgbtn" onClick={() => setOpen(p)} aria-label={`View ${p.title}`}>

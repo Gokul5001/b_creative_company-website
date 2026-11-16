@@ -66,20 +66,34 @@ export const services = [
   },
 ]
 
+// `video` is matched against the file names in src/assets (case-insensitive, any part of the name), so the long exported file names can stay as they are.
+// `image` is optional: a still picture shown before the video is played. Without it the first frame of the video is used.
 export const projects = [
   {
     id: 'markhor-drink',
     title: 'Markhor Stimulant Drink',
     category: 'Food & Beverage',
     image: 'markhor-drink',
-    video: 'markhor-drink',
+    video: 'power heroes choose',
+  },
+  {
+    id: 'markhor-refresh',
+    title: 'Markhor Stimulant Drink: Refreshing Your Day',
+    category: 'Food & Beverage',
+    video: 'refreshing your feed',
+  },
+  {
+    id: 'natures-finest',
+    title: 'Nature\'s Finest: A New Standard of Wellness',
+    category: 'Food & Beverage',
+    video: 'a new standard of wellness',
   },
   {
     id: 'saif-sky-rise',
     title: 'Saif Group of Companies: Saif Sky Rise',
     category: 'Real Estate',
     image: 'saif-sky-rise',
-    video: 'saif-sky-rise',
+    video: 'saif sky rise',
   },
 ]
 
