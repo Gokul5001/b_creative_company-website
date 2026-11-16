@@ -100,7 +100,7 @@ export default function Work() {
       <div className="wrap">
         <Reveal className="sec-head">
           <p className="eyebrow">Our work</p>
-          <h2 className="title">Projects we are <em>proud of</em></h2>
+          <h2 className="title">AI Video Editing &<em> Flimmaking Projects</em></h2>
         </Reveal>
 
         {projects.length > 4 && categories.length > 2 && (
