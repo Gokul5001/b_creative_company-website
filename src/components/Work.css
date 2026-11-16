@@ -46,3 +46,33 @@
 .lightbox__x { position: absolute; top: 18px; right: 18px; display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
 .lightbox__x:hover { background: #fff; color: var(--ink); }
 @keyframes card-in { from { opacity: 0; scale: .97; } to { opacity: 1; scale: 1; } }
+
+/* website development projects */
+.web { margin-top: clamp(48px, 6vw, 80px); }
+.web__head { display: grid; gap: 8px; margin-bottom: 28px; }
+.web__head .eyebrow { margin: 0; }
+.web__head h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; color: #fff; }
+.web__head h3 em { font-style: normal; color: var(--gold-hi); }
+.web__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2vw, 26px); }
+.web__card { display: grid; gap: 16px; color: #fff; text-decoration: none; }
+.web__shot { overflow: hidden; border-radius: 16px; background: #1a1a1a; box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1); transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease; }
+.web__card:hover .web__shot, .web__card:focus-visible .web__shot { transform: translateY(-6px); box-shadow: 0 30px 56px -26px rgba(232, 89, 12, 0.55), 0 0 0 1px var(--gold-hi); }
+.web__bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #242424; }
+.web__bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.28); }
+.web__bar i:first-child { background: #ff5f57; } .web__bar i:nth-child(2) { background: #febc2e; } .web__bar i:nth-child(3) { background: #28c840; }
+.web__bar span { flex: 1; min-width: 0; margin-left: 8px; padding: 4px 10px; overflow: hidden; border-radius: 999px; background: rgba(255, 255, 255, 0.08); font-size: 11px; color: rgba(255, 255, 255, 0.65); white-space: nowrap; text-overflow: ellipsis; }
+.web__view { aspect-ratio: 16 / 11; overflow: hidden; background: #fff; }
+.web__view img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: object-position 2.4s ease; }
+.web__card:hover .web__view img { object-position: bottom; }
+.web__ph { display: grid; place-content: center; gap: 6px; height: 100%; padding: 16px; text-align: center; background: radial-gradient(120% 120% at 20% 0%, color-mix(in srgb, var(--hue) 70%, #fff 30%), var(--hue)); }
+.web__ph b { font-family: var(--font-display); font-weight: 700; font-size: clamp(18px, 1.8vw, 26px); }
+.web__ph small { font-size: 12px; letter-spacing: 0.08em; opacity: 0.75; }
+.web__info { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.web__info span:first-child { display: grid; gap: 4px; }
+.web__info small { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-hi); }
+.web__info b { font-family: var(--font-display); font-weight: 600; font-size: 17px; line-height: 1.3; }
+.web__go { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; transition: background .25s ease, border-color .25s ease, rotate .3s ease; }
+.web__go svg { rotate: -45deg; }
+.web__card:hover .web__go { background: var(--gold); border-color: var(--gold); }
+@media (max-width: 1000px) { .web__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .web__grid { grid-template-columns: minmax(0, 1fr); } }

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './Work.css'
-import { projects } from '../data/site'
+import { projects, websites } from '../data/site'
 import { Reveal } from '../Reveal'
 import { Close } from './Icons'
 
@@ -31,6 +31,8 @@ const Arrow = ({ dir }) => (
     <path d={dir === 'left' ? 'M19 12H5M11 6l-6 6 6 6' : 'M5 12h14M13 6l6 6-6 6'} />
   </svg>
 )
+
+const host = (u) => new URL(u).hostname.replace(/^www\./, '')
 
 const Play = ({ size = 14 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
@@ -100,7 +102,7 @@ export default function Work() {
       <div className="wrap">
         <Reveal className="sec-head">
           <p className="eyebrow">Our work</p>
-          <h2 className="title">AI Video Editing &<em> Flimmaking Projects</em></h2>
+          <h2 className="title">Projects we are <em>proud of</em></h2>
         </Reveal>
 
         {projects.length > 4 && categories.length > 2 && (
@@ -154,6 +156,31 @@ export default function Work() {
             {edge.right && <button className="wk__arrow wk__arrow--next" onClick={() => slide(1)} aria-label="Scroll to next projects"><Arrow dir="right" /></button>}
           </div>
         </div>
+
+        <Reveal className="web">
+          <div className="web__head">
+            <p className="eyebrow">Website development</p>
+            <h3>Website Development <em>Projects</em></h3>
+          </div>
+          <div className="web__grid">
+            {websites.map((w) => (
+              <a key={w.id} className="web__card" href={w.url} target="_blank" rel="noopener noreferrer" style={{ '--hue': w.hue }} aria-label={`Visit ${w.title} website`}>
+                <div className="web__shot">
+                  <div className="web__bar"><i /><i /><i /><span>{host(w.url)}</span></div>
+                  <div className="web__view">
+                    {img(w.image) ? <img src={img(w.image)} alt={`${w.title} website`} loading="lazy" draggable="false" /> : (
+                      <div className="web__ph"><b>{w.title}</b><small>{host(w.url)}</small></div>
+                    )}
+                  </div>
+                </div>
+                <div className="web__info">
+                  <span><small>{w.category}</small><b>{w.title}</b></span>
+                  <span className="web__go" aria-hidden="true"><Arrow dir="right" /></span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </Reveal>
       </div>
 
       {open && (
