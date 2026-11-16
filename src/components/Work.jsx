@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './Work.css'
 import { projects, websites } from '../data/site'
 import { Reveal } from '../Reveal'
+import { useInView } from '../hooks'
 import { Close } from './Icons'
 
 // project images: everything in src/assets/work plus loose images in src/assets, keyed by file name without extension
@@ -31,6 +32,32 @@ const Arrow = ({ dir }) => (
     <path d={dir === 'left' ? 'M19 12H5M11 6l-6 6 6 6' : 'M5 12h14M13 6l6 6-6 6'} />
   </svg>
 )
+
+// heading that types itself out the first time it scrolls into view (text is reserved up front so layout never jumps)
+function TypedHeading({ text, accent, as: Tag = 'h2', className = '' }) {
+  const cut = text.indexOf(accent) // everything from here on is orange
+  const [ref, seen] = useInView()
+  const [n, setN] = useState(0)
+  useEffect(() => {
+    if (!seen) return undefined
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setN(text.length); return undefined }
+    let i = 0
+    let t
+    const tick = () => { i += 1; setN(i); if (i < text.length) t = setTimeout(tick, 45) }
+    t = setTimeout(tick, 250)
+    return () => clearTimeout(t)
+  }, [seen, text])
+  return (
+    <Tag ref={ref} className={`wk__typed ${className}`} aria-label={text}>
+      <span aria-hidden="true">
+        {text.slice(0, Math.min(n, cut))}
+        {n > cut && <em>{text.slice(cut, n)}</em>}
+        {n < text.length && <i className="wk__caret" />}
+      </span>
+      <span className="wk__ghost" aria-hidden="true">{text}</span>
+    </Tag>
+  )
+}
 
 const host = (u) => new URL(u).hostname.replace(/^www\./, '')
 
@@ -100,10 +127,8 @@ export default function Work() {
   return (
     <section id="work" className="section work">
       <div className="wrap">
-        <Reveal className="sec-head">
-          <p className="eyebrow">Our work</p>
-          <h2 className="title">Projects we are <em>proud of</em></h2>
-        </Reveal>
+        <p className="eyebrow">Our work</p>
+        <TypedHeading text="AI VIDEO EDITING & FILMMAKING PROJECTS" accent="FILMMAKING" />
 
         {projects.length > 4 && categories.length > 2 && (
           <div className="work__filters" role="tablist" aria-label="Filter projects">
@@ -158,10 +183,8 @@ export default function Work() {
         </div>
 
         <Reveal className="web">
-          <div className="web__head">
-            <p className="eyebrow">Website development</p>
-            <h3>Website Development <em>Projects</em></h3>
-          </div>
+          <p className="eyebrow">Our work</p>
+          <TypedHeading text="WEBSITE DEVELOPMENT PROJECTS" accent="DEVELOPMENT" />
           <div className="web__grid">
             {websites.map((w) => (
               <a key={w.id} className="web__card" href={w.url} target="_blank" rel="noopener noreferrer" style={{ '--hue': w.hue }} aria-label={`Visit ${w.title} website`}>

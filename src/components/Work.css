@@ -49,10 +49,6 @@
 
 /* website development projects */
 .web { margin-top: clamp(48px, 6vw, 80px); }
-.web__head { display: grid; gap: 8px; margin-bottom: 28px; }
-.web__head .eyebrow { margin: 0; }
-.web__head h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; color: #fff; }
-.web__head h3 em { font-style: normal; color: var(--gold-hi); }
 .web__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2vw, 26px); }
 .web__card { display: grid; gap: 16px; color: #fff; text-decoration: none; }
 .web__shot { overflow: hidden; border-radius: 16px; background: #1a1a1a; box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1); transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease; }
@@ -76,3 +72,14 @@
 .web__card:hover .web__go { background: var(--gold); border-color: var(--gold); }
 @media (max-width: 1000px) { .web__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .web__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* typed section headings: capital, bold */
+.wk__typed { position: relative; margin: 0 0 24px; font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3.2vw, 44px); line-height: 1.15; letter-spacing: 0.01em; text-transform: uppercase; color: #fff; }
+.wk__ghost { visibility: hidden; }
+.wk__typed > span:first-child { position: absolute; inset: 0; }
+.wk__caret { display: inline-block; width: 3px; height: 0.9em; margin-left: 3px; vertical-align: -0.08em; background: var(--gold-hi); animation: wk-caret 0.8s steps(1) infinite; }
+@keyframes wk-caret { 50% { opacity: 0; } }
+.web .wk__typed { font-size: clamp(22px, 2.6vw, 36px); }
+
+.wk__typed em { font-style: normal; color: var(--gold-hi); }
+.work .eyebrow { margin: 0 0 12px; }

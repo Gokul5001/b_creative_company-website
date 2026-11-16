@@ -101,7 +101,7 @@ export const websites = [
   { id: 'saif-group', title: 'Saif Group', category: 'Real Estate', url: 'https://thesaifgroup.com/', image: 'web-saif-group', hue: '#1d3557' },
   { id: 'markhor-drinks', title: 'Markhor Drinks', category: 'Food & Beverage', url: 'https://markhordrinks.com', image: 'web-markhor-drinks', hue: '#0f5132' },
   { id: 'oxford-academy', title: 'Oxford Academy', category: 'Education', url: 'https://oxfordacademy.edu.sa/en', image: 'web-oxford-academy', hue: '#4a1d6b' },
-  { id: 'deal', title: 'Deal', category: 'Online Platform', url: 'https://deal.com.sa/', image: 'web-deal', hue: '#9a3412' },
+  { id: 'deal', title: 'Deal', category: 'Real Estate', url: 'https://deal.com.sa/', image: 'web-deal', hue: '#9a3412' },
 ]
 
 export const founder = {
