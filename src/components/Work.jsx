@@ -25,7 +25,25 @@ const videoFor = (p) => {
   return Object.entries(videoFiles).find(([name]) => name.toLowerCase().includes(key))?.[1]
 }
 
-const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
+// project galleries: every image inside a sub-folder of src/assets (e.g. src/assets/project_obhur/), sorted by file name so page-0001, page-0002 ... stay in order.
+// A project picks its folder with `folder: 'project_obhur'` in data/site.js; without that, the first folder whose name contains a word of the project's id / title is used.
+const galleries = {}
+Object.entries(import.meta.glob('../assets/*/*.{png,jpg,jpeg,webp}', { eager: true, query: '?url', import: 'default' }))
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .forEach(([k, v]) => {
+    const folder = k.split('/').slice(-2, -1)[0]
+    if (folder === 'work' || folder === 'team') return // thumbnails / team photos, not galleries
+    ;(galleries[folder] ||= []).push(v)
+  })
+const galleryFor = (p) => {
+  if (!p) return undefined
+  if (p.folder) return galleries[p.folder]
+  const words = `${p.id} ${p.title}`.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 2)
+  const hit = Object.keys(galleries).find((f) => words.some((w) => f.toLowerCase().includes(w)))
+  return hit ? galleries[hit] : undefined
+}
+
+const categories = ['All',...Array.from(new Set(projects.map((p) => p.category)))]
 
 const Arrow = ({ dir }) => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -86,6 +104,51 @@ function VideoMedia({ title, src, poster, playing, onPlay, onStop, onMeta }) {
         </button>
       )}
     </>
+  )
+}
+
+// slideshow shown in the lightbox: slides auto-advance, arrows / dots / keyboard move manually, pauses on hover
+function Gallery({ images, title }) {
+  const [i, setI] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const n = images.length
+  const go = useCallback((d) => setI((x) => (x + d + n) % n), [n])
+
+  useEffect(() => {
+    if (paused || n < 2) return undefined
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    const t = setInterval(() => setI((x) => (x + 1) % n), 2000)
+    return () => clearInterval(t)
+  }, [paused, n, i]) // `i` restarts the timer after a manual move
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowLeft') go(-1)
+      if (e.key === 'ArrowRight') go(1)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [go])
+
+  return (
+    <div className="gal" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} aria-roledescription="carousel" aria-label={`${title} images`}>
+      <div className="gal__view">
+        <div className="gal__track" style={{ transform: `translateX(-${i * 100}%)` }}>
+          {images.map((src, k) => (
+            <div key={src} className="gal__slide" aria-hidden={k !== i}>
+              <img src={src} alt={`${title} ${k + 1} of ${n}`} loading={Math.abs(k - i) < 2 ? 'eager' : 'lazy'} draggable="false" />
+            </div>
+          ))}
+        </div>
+      </div>
+      {n > 1 && (
+        <>
+          <button className="wk__arrow gal__arrow gal__arrow--prev" onClick={() => go(-1)} aria-label="Previous image"><Arrow dir="left" /></button>
+          <button className="wk__arrow gal__arrow gal__arrow--next" onClick={() => go(1)} aria-label="Next image"><Arrow dir="right" /></button>
+          <div className="gal__count">{i + 1} / {n}</div>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -227,9 +290,11 @@ export default function Work() {
       {open && (
         <div className="lightbox" role="dialog" aria-modal="true" aria-label={open.title} onClick={() => setOpen(null)}>
           <button className="lightbox__x" aria-label="Close" onClick={() => setOpen(null)}><Close /></button>
-          <figure onClick={(e) => e.stopPropagation()}>
+          <figure className={galleryFor(open)?.length > 1 ? 'is-gallery' : ''} onClick={(e) => e.stopPropagation()}>
             {videoFor(open) ? (
               <video src={videoFor(open)} poster={img(open.image)} controls autoPlay loop playsInline />
+            ) : galleryFor(open)?.length > 1 ? (
+              <Gallery key={open.id} images={galleryFor(open)} title={open.title} />
             ) : (
               <img src={img(open.image)} alt={open.title} />
             )}

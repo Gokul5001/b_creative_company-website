@@ -94,3 +94,16 @@
 .gd__card:hover .gd__media { transform: translateY(-6px); box-shadow: 0 30px 56px -26px rgba(232, 89, 12, 0.55), 0 0 0 1px var(--gold-hi); }
 .gd__card:hover .gd__media img { scale: 1.04; }
 .gd__card:hover .wk__play { background: var(--gold); }
+/* lightbox slideshow (all images of a project) */
+.lightbox figure.is-gallery { width: min(92vw, 1000px); max-width: none; }
+.gal { position: relative; }
+.gal__view { overflow: hidden; border-radius: 14px; background: #000; }
+.gal__track { display: flex; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.gal__slide { flex: none; display: grid; place-items: center; width: 100%; height: 78vh; }
+.lightbox .gal__slide img { max-width: 100%; max-height: 100%; height: auto; width: auto; margin: 0; border-radius: 0; object-fit: contain; }
+.gal__arrow { top: 50%; }
+.gal__arrow--prev { left: 12px; }
+.gal__arrow--next { right: 12px; }
+.gal__count { position: absolute; right: 12px; bottom: 12px; padding: 6px 12px; border-radius: 999px; background: rgba(10, 9, 5, 0.6); backdrop-filter: blur(8px); font-size: 12px; font-weight: 600; color: #fff; }
+@media (max-width: 640px) { .gal__slide { height: 64vh; } .gal__arrow--prev { left: 6px; } .gal__arrow--next { right: 6px; } }
+@media (prefers-reduced-motion: reduce) { .gal__track { transition: none; } }
