@@ -54,11 +54,45 @@ function useTyping(total, speed = 22, startDelay = 700) {
   return count
 }
 
+function useCountUp(target, duration = 1400, startDelay = 0) {
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    if (reduceMotion()) {
+      setValue(target)
+      return
+    }
+
+    let frameId
+    const startTime = performance.now() + startDelay
+
+    const tick = (now) => {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      const next = Math.round(target * eased)
+
+      setValue(next)
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick)
+      }
+    }
+
+    frameId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frameId)
+  }, [target, duration, startDelay])
+
+  return value
+}
+
 export default function Hero() {
   const typedTitle = useTyping(titleFull.length, TITLE_SPEED, TITLE_START)
   const titleDone = typedTitle >= titleFull.length
   const typed = useTyping(leadText.length, 16, TITLE_START + titleFull.length * TITLE_SPEED + 300)
   const done = typed >= leadText.length
+  const deliveredCount = useCountUp(stats[0].n, 1200, 300)
+  const clientsCount = useCountUp(stats[1].n, 1200, 450)
 
   const brandShown = Math.min(typedTitle, titleBrand.length)
   const postShown = Math.max(0, typedTitle - titleBrand.length)
@@ -102,9 +136,9 @@ export default function Hero() {
           />
 
           <div className="hero__stats">
-            <div><b>{stats[0].n}{stats[0].suffix}</b><span>{stats[0].label}</span></div>
+            <div><b>{deliveredCount}{stats[0].suffix}</b><span>{stats[0].label}</span></div>
             <i></i>
-            <div><b>{stats[1].n}{stats[1].suffix}</b><span>{stats[1].label}</span></div>
+            <div><b>{clientsCount}{stats[1].suffix}</b><span>{stats[1].label}</span></div>
           </div>
         </div>
       </div>
