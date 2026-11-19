@@ -24,17 +24,25 @@
 .stat b { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 4vw, 52px); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
 .stat span { font-size: 14.5px; color: var(--mute); }
 
-.ach { position: relative; margin-top: 24px; padding: clamp(32px, 5vw, 64px); border-radius: 30px; background: var(--ink); color: var(--paper); overflow: hidden; }
-.ach::before { content: ''; position: absolute; right: -10%; top: -40%; width: 60%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 122, 26, 0.22), transparent); pointer-events: none; }
-.ach__head { position: relative; display: grid; gap: 10px; margin-bottom: 44px; text-align: center; }
-.ach__head h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 2.8vw, 34px); }
-.ach__head p { font-size: 12.5px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-hi); }
-.ach__grid { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 5vw, 64px); }
-.ach__year { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
-.ach__year span { padding: 8px 26px; border-radius: 999px; background: var(--paper); color: var(--ink); font-family: var(--font-display); font-size: 26px; line-height: 1.2; }
-.ach__year i { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.2); }
-.ach__item p { color: rgba(255, 253, 248, 0.74); }
+.ach { position: relative; isolation: isolate; margin-top: 24px; padding: clamp(30px, 5vw, 60px); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 28px; background: linear-gradient(115deg, #101010 0%, #0b0b0b 62%, #17100b 100%); color: var(--paper); }
+.ach::before { content: ''; position: absolute; z-index: -1; right: -18%; bottom: -90%; width: 65%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 122, 26, 0.14), transparent); pointer-events: none; }
+.ach__head { position: relative; display: grid; justify-items: start; gap: 8px; margin-bottom: clamp(26px, 4vw, 42px); text-align: left; }
+.ach__head h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(27px, 3vw, 38px); letter-spacing: -0.035em; }
+.ach__head p { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-hi); }
+.ach__grid { position: relative; display: grid; gap: 14px; padding-left: 26px; }
+.ach__grid::before { content: ''; position: absolute; left: 6px; top: 28px; bottom: 28px; width: 1px; background: linear-gradient(rgba(255, 122, 26, 0.8), rgba(255, 122, 26, 0.16)); }
+.ach__item { position: relative; display: grid; grid-template-columns: minmax(92px, 120px) minmax(0, 1fr); align-items: center; gap: clamp(16px, 3vw, 36px); min-width: 0; padding: clamp(18px, 2.5vw, 26px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 18px; background: rgba(255, 255, 255, 0.025); transition: border-color .25s ease, background .25s ease, translate .25s ease; }
+.ach__item::before { content: ''; position: absolute; left: -26px; top: 50%; width: 11px; height: 11px; border: 2px solid #17100b; border-radius: 50%; background: var(--gold-hi); box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.2); translate: -50% -50%; }
+.ach__item:hover { translate: 4px 0; border-color: rgba(255, 122, 26, 0.38); background: rgba(255, 255, 255, 0.045); }
+.ach__year { display: flex; align-items: center; margin: 0; }
+.ach__year span { color: var(--gold-hi); font-family: var(--font-display); font-size: clamp(19px, 2vw, 23px); font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.ach__year i { display: none; }
+.ach__item p { color: rgba(255, 253, 248, 0.72); font-size: 15px; line-height: 1.8; }
 .ach__item strong { color: #fff; font-weight: 700; }
+.ach.rv.in .ach__head { animation: ach-enter .55s cubic-bezier(.2, .7, .2, 1) both; }
+.ach.rv.in .ach__item { animation: ach-enter .6s cubic-bezier(.2, .7, .2, 1) both; }
+.ach.rv.in .ach__item:nth-child(2) { animation-delay: .12s; }
+@keyframes ach-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 900px) {
   .why__cols, .ach__grid { grid-template-columns: 1fr; }
@@ -42,4 +50,8 @@
 @media (max-width: 600px) {
   .stats__in { grid-template-columns: 1fr; }
   .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+  .ach__item { grid-template-columns: 1fr; gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ach__item { transition: none; }
 }

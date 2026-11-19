@@ -251,14 +251,15 @@ export const benefits = [
 export const achievements = [
   {
     year: '2026',
-    lead: 'Graphic design services for',
-    names: ['Albaik', 'Abeer Medical Group', "L'Oréal Paris Hair Serum"],
+    lead: 'services for',
+    names: ['Albaik', 'Abeer Medical Group', "L'Oréal Paris Hair Serum", 'Oxford English & Business Academy', 'Son of Bee', 'Punjabi Restaurant'],
+    tail: 'in Saudi Arabia.',
   },
   {
     year: '2025',
-    lead: 'Graphic design services for',
+    lead: 'services for',
     names: ['Arura Gold', 'Dental Care Clinic'],
-    tail: 'and collaboration work in Creative Solution with NADEC and Hyundai.',
+    tail: 'and collaboration work in Creative Solution with (NADEC and Hyundai) in Saudi Arabia.',
   },
 ]
 
