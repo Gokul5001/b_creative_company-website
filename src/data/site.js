@@ -162,6 +162,48 @@ export const digitalMarketing = [
     platform: 'instagram',
     url: 'https://www.instagram.com/abeerhc?igsh=MWM2M3J6eXh6ZTZrcQ==',
   },
+  {
+    id: 'saif-group-facebook',
+    title: 'Saif Group',
+    category: 'Real Estate',
+    platform: 'facebook',
+    url: 'https://www.facebook.com/saifgrp',
+  },
+  {
+    id: 'abeer-medical-facebook',
+    title: 'Abeer Medical Group',
+    category: 'Healthcare',
+    platform: 'facebook',
+    url: 'https://www.facebook.com/abeerhc',
+  },
+  {
+    id: 'facebook-campaign',
+    title: 'Facebook Campaign',
+    category: 'Campaign',
+    platform: 'facebook',
+    url: 'https://www.facebook.com/share/1JR6yvYQKP/',
+  },
+  {
+    id: 'abeer-medical-linkedin',
+    title: 'Abeer Medical Group',
+    category: 'Healthcare',
+    platform: 'linkedin',
+    url: 'https://www.linkedin.com/company/abeerhc/',
+  },
+  {
+    id: 'oxford-academy-linkedin',
+    title: 'Oxford Academy',
+    category: 'Education',
+    platform: 'linkedin',
+    url: 'https://www.linkedin.com/company/oxfordworld/',
+  },
+  {
+    id: 'saif-group-linkedin',
+    title: 'Saif Group',
+    category: 'Real Estate',
+    platform: 'linkedin',
+    url: 'https://www.linkedin.com/company/saifgroupisb/',
+  },
 ]
 
 export const digitalMarketingPlatforms = [
