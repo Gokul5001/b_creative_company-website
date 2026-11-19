@@ -310,12 +310,22 @@ export default function Work() {
                       rel="noopener noreferrer"
                       aria-label={`View ${campaign.title} digital marketing campaign`}
                     >
-                      <span className="dm__brand" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                          <rect x="3" y="3" width="18" height="18" rx="5" />
-                          <circle cx="12" cy="12" r="4" />
-                          <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
-                        </svg>
+                      <span className={`dm__brand dm__brand--${campaign.platform}`} aria-hidden="true">
+                        {campaign.platform === 'facebook' ? (
+                          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.7-4.5 4.7V10H6.7v3h2.9v8h3.9z" />
+                          </svg>
+                        ) : campaign.platform === 'linkedin' ? (
+                          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2ZM8.34 18H5.67V9.33h2.67V18ZM7 8.15a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1ZM18.33 18h-2.66v-4.22c0-1-.02-2.28-1.39-2.28-1.39 0-1.6 1.08-1.6 2.2V18h-2.67V9.33h2.56v1.18h.04c.36-.68 1.23-1.39 2.53-1.39 2.7 0 3.2 1.78 3.2 4.1V18Z" />
+                          </svg>
+                        ) : (
+                          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                            <rect x="3" y="3" width="18" height="18" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
+                          </svg>
+                        )}
                       </span>
                       <span className="dm__info">
                         <small>{campaign.category}</small>
