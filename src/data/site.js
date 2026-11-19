@@ -117,44 +117,58 @@ export const digitalMarketing = [
     id: 'saif-group',
     title: 'Saif Group Limited',
     category: 'Real Estate',
+    platform: 'instagram',
     url: 'https://www.instagram.com/saifgroupofficial?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==',
   },
   {
     id: 'markhor-group',
     title: 'Markhor Group of Companies',
     category: 'Food & Beverage',
+    platform: 'instagram',
     url: 'https://www.instagram.com/markhordrinkspk?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==',
   },
   {
     id: 'son-of-a-bee',
     title: 'Son of a Bee',
     category: 'Hospitality',
+    platform: 'instagram',
     url: 'https://www.instagram.com/sonofabee.sa?igsh=bjVscTIyOGpmMDM=',
   },
   {
     id: 'oxford-academy',
     title: 'Oxford Academy',
     category: 'Education',
+    platform: 'instagram',
     url: 'https://www.instagram.com/oxfordmakah?igsh=MTN5N2xtNHZhb2g1cQ==',
   },
   {
     id: 'punjabi-restaurant',
     title: 'Punjabi Restaurant',
     category: 'Food & Beverage',
+    platform: 'instagram',
     url: 'https://www.instagram.com/punjabi.restaurant?igsh=MTQ2dGlrOXI1dnZhOA==',
   },
   {
     id: 'kabirs-restaurant',
     title: 'KABIRS Restaurant',
     category: 'Food & Beverage',
+    platform: 'instagram',
     url: 'https://www.instagram.com/kabirsrestaurantpeshawar?igsh=MTJhczE4N2JjNHEzNw==',
   },
   {
     id: 'abeer-medical',
     title: 'Abeer Medical Centre',
     category: 'Healthcare',
+    platform: 'instagram',
     url: 'https://www.instagram.com/abeerhc?igsh=MWM2M3J6eXh6ZTZrcQ==',
   },
+]
+
+export const digitalMarketingPlatforms = [
+  { id: 'instagram', title: 'Instagram' },
+  { id: 'facebook', title: 'Facebook' },
+  { id: 'linkedin', title: 'LinkedIn' },
+  { id: 'tiktok', title: 'TikTok' },
 ]
 
 export const founder = {

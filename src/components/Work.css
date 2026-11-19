@@ -97,6 +97,17 @@
 
 /* digital marketing campaign links */
 .dm { margin-top: clamp(48px, 6vw, 80px); }
+.dm__folders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
+.dm__folder { display: grid; grid-template-columns: 52px 1fr 32px; align-items: center; gap: 16px; min-height: 92px; padding: 18px 20px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; background: #151515; color: #fff; text-align: left; cursor: pointer; transition: transform .3s ease, border-color .3s ease, background .3s ease; }
+.dm__folder:hover, .dm__folder:focus-visible, .dm__folder.is-on { transform: translateY(-3px); border-color: var(--gold-hi); background: radial-gradient(140% 160% at 100% 0%, rgba(255, 122, 26, 0.18), transparent 60%), #181818; }
+.dm__folder-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: rgba(232, 89, 12, 0.14); color: var(--gold-hi); }
+.dm__folder-info { display: grid; gap: 5px; }
+.dm__folder-info b { font-family: var(--font-display); font-size: 18px; }
+.dm__folder-info small { font-size: 12px; color: rgba(255, 255, 255, 0.58); }
+.dm__folder-toggle { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 50%; color: var(--gold-hi); transition: rotate .25s ease, background .25s ease; }
+.dm__folder-toggle.is-on { rotate: 180deg; background: rgba(232, 89, 12, 0.14); }
+.dm__content { margin-top: 20px; }
+.dm__empty { margin: 0; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; color: rgba(255, 255, 255, 0.65); text-align: center; }
 .dm__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
 .dm__card { display: grid; grid-template-columns: 52px 1fr 40px; align-items: center; gap: 16px; min-height: 112px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; background: radial-gradient(140% 160% at 100% 0%, rgba(255, 122, 26, 0.12), transparent 60%), #151515; color: #fff; text-decoration: none; transition: transform .35s ease, border-color .35s ease, background .35s ease; }
 .dm__card:hover, .dm__card:focus-visible { transform: translateY(-5px); border-color: var(--gold-hi); background: radial-gradient(140% 160% at 100% 0%, rgba(255, 122, 26, 0.22), transparent 60%), #181818; }
@@ -108,6 +119,7 @@
 .dm__go svg { rotate: -45deg; }
 .dm__card:hover .dm__go { background: var(--gold); border-color: var(--gold); }
 @media (max-width: 700px) { .dm__grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 700px) { .dm__folders { grid-template-columns: minmax(0, 1fr); } }
 /* lightbox slideshow (all images of a project) */
 .lightbox figure.is-gallery { width: min(92vw, 1000px); max-width: none; }
 .gal { position: relative; }

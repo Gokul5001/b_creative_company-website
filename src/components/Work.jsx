@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './Work.css'
-import { projects, designs, websites, digitalMarketing } from '../data/site'
+import { projects, designs, websites, digitalMarketing, digitalMarketingPlatforms } from '../data/site'
 import { Reveal } from '../Reveal'
 import { useInView } from '../hooks'
 import { Close } from './Icons'
@@ -154,6 +154,7 @@ function Gallery({ images, title }) {
 
 export default function Work() {
   const [cat, setCat] = useState('All')
+  const [marketingPlatform, setMarketingPlatform] = useState(null)
   const [open, setOpen] = useState(null)
   const [playing, setPlaying] = useState(null)
   const [ratios, setRatios] = useState({}) // real width / height of each video, read from the file
@@ -266,31 +267,69 @@ export default function Work() {
         <Reveal className="dm">
           <p className="eyebrow">Our work</p>
           <TypedHeading text="DIGITAL MARKETING CAMPAIGN LINKS" accent="MARKETING" />
-          <div className="dm__grid">
-            {digitalMarketing.map((campaign) => (
-              <a
-                key={campaign.id}
-                className="dm__card"
-                href={campaign.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`View ${campaign.title} digital marketing campaign`}
-              >
-                <span className="dm__brand" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <rect x="3" y="3" width="18" height="18" rx="5" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
-                  </svg>
-                </span>
-                <span className="dm__info">
-                  <small>{campaign.category}</small>
-                  <b>{campaign.title}</b>
-                </span>
-                <span className="dm__go" aria-hidden="true"><Arrow dir="right" /></span>
-              </a>
-            ))}
+          <div className="dm__folders" aria-label="Campaign platforms">
+            {digitalMarketingPlatforms.map((platform) => {
+              const count = digitalMarketing.filter((campaign) => campaign.platform === platform.id).length
+              return (
+                <button
+                  key={platform.id}
+                  className={`dm__folder ${marketingPlatform === platform.id ? 'is-on' : ''}`}
+                  type="button"
+                  aria-pressed={marketingPlatform === platform.id}
+                  onClick={() => setMarketingPlatform((current) => current === platform.id ? null : platform.id)}
+                >
+                  <span className="dm__folder-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H10l2 2h7.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" />
+                      <path d="M3 9h18" />
+                    </svg>
+                  </span>
+                  <span className="dm__folder-info">
+                    <b>{platform.title}</b>
+                    <small>{count ? `${count} campaign${count === 1 ? '' : 's'}` : 'No links yet'}</small>
+                  </span>
+                  <span className={`dm__folder-toggle ${marketingPlatform === platform.id ? 'is-on' : ''}`} aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </span>
+                </button>
+              )
+            })}
           </div>
+          {marketingPlatform && (
+            <div className="dm__content" aria-live="polite">
+              {digitalMarketing.some((campaign) => campaign.platform === marketingPlatform) ? (
+                <div className="dm__grid">
+                  {digitalMarketing.filter((campaign) => campaign.platform === marketingPlatform).map((campaign) => (
+                    <a
+                      key={campaign.id}
+                      className="dm__card"
+                      href={campaign.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${campaign.title} digital marketing campaign`}
+                    >
+                      <span className="dm__brand" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <rect x="3" y="3" width="18" height="18" rx="5" />
+                          <circle cx="12" cy="12" r="4" />
+                          <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                      </span>
+                      <span className="dm__info">
+                        <small>{campaign.category}</small>
+                        <b>{campaign.title}</b>
+                      </span>
+                      <span className="dm__go" aria-hidden="true"><Arrow dir="right" /></span>
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <p className="dm__empty">Campaign links for this platform will appear here.</p>
+              )}
+            </div>
+          )}
         </Reveal>
 
         <Reveal className="web">
