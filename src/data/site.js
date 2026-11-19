@@ -112,6 +112,51 @@ export const websites = [
   { id: 'deal', title: 'Deal', category: 'Real Estate', url: 'https://deal.com.sa/', image: 'web-deal', hue: '#9a3412' },
 ]
 
+export const digitalMarketing = [
+  {
+    id: 'saif-group',
+    title: 'Saif Group Limited',
+    category: 'Real Estate',
+    url: 'https://www.instagram.com/saifgroupofficial?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==',
+  },
+  {
+    id: 'markhor-group',
+    title: 'Markhor Group of Companies',
+    category: 'Food & Beverage',
+    url: 'https://www.instagram.com/markhordrinkspk?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==',
+  },
+  {
+    id: 'son-of-a-bee',
+    title: 'Son of a Bee',
+    category: 'Hospitality',
+    url: 'https://www.instagram.com/sonofabee.sa?igsh=bjVscTIyOGpmMDM=',
+  },
+  {
+    id: 'oxford-academy',
+    title: 'Oxford Academy',
+    category: 'Education',
+    url: 'https://www.instagram.com/oxfordmakah?igsh=MTN5N2xtNHZhb2g1cQ==',
+  },
+  {
+    id: 'punjabi-restaurant',
+    title: 'Punjabi Restaurant',
+    category: 'Food & Beverage',
+    url: 'https://www.instagram.com/punjabi.restaurant?igsh=MTQ2dGlrOXI1dnZhOA==',
+  },
+  {
+    id: 'kabirs-restaurant',
+    title: 'KABIRS Restaurant',
+    category: 'Food & Beverage',
+    url: 'https://www.instagram.com/kabirsrestaurantpeshawar?igsh=MTJhczE4N2JjNHEzNw==',
+  },
+  {
+    id: 'abeer-medical',
+    title: 'Abeer Medical Centre',
+    category: 'Healthcare',
+    url: 'https://www.instagram.com/abeerhc?igsh=MWM2M3J6eXh6ZTZrcQ==',
+  },
+]
+
 export const founder = {
   id: 'bilal',
   name: 'Muhammad Bilal',

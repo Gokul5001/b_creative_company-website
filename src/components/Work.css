@@ -94,6 +94,20 @@
 .gd__card:hover .gd__media { transform: translateY(-6px); box-shadow: 0 30px 56px -26px rgba(232, 89, 12, 0.55), 0 0 0 1px var(--gold-hi); }
 .gd__card:hover .gd__media img { scale: 1.04; }
 .gd__card:hover .wk__play { background: var(--gold); }
+
+/* digital marketing campaign links */
+.dm { margin-top: clamp(48px, 6vw, 80px); }
+.dm__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
+.dm__card { display: grid; grid-template-columns: 52px 1fr 40px; align-items: center; gap: 16px; min-height: 112px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; background: radial-gradient(140% 160% at 100% 0%, rgba(255, 122, 26, 0.12), transparent 60%), #151515; color: #fff; text-decoration: none; transition: transform .35s ease, border-color .35s ease, background .35s ease; }
+.dm__card:hover, .dm__card:focus-visible { transform: translateY(-5px); border-color: var(--gold-hi); background: radial-gradient(140% 160% at 100% 0%, rgba(255, 122, 26, 0.22), transparent 60%), #181818; }
+.dm__brand { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: #fff; }
+.dm__info { display: grid; gap: 6px; min-width: 0; }
+.dm__info small { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-hi); }
+.dm__info b { font-family: var(--font-display); font-size: 18px; line-height: 1.25; }
+.dm__go { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; transition: background .25s ease, border-color .25s ease, rotate .3s ease; }
+.dm__go svg { rotate: -45deg; }
+.dm__card:hover .dm__go { background: var(--gold); border-color: var(--gold); }
+@media (max-width: 700px) { .dm__grid { grid-template-columns: minmax(0, 1fr); } }
 /* lightbox slideshow (all images of a project) */
 .lightbox figure.is-gallery { width: min(92vw, 1000px); max-width: none; }
 .gal { position: relative; }

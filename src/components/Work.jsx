@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './Work.css'
-import { projects, designs, websites } from '../data/site'
+import { projects, designs, websites, digitalMarketing } from '../data/site'
 import { Reveal } from '../Reveal'
 import { useInView } from '../hooks'
 import { Close } from './Icons'
@@ -260,6 +260,36 @@ export default function Work() {
                 </div>
               ))}
             </div>
+          </div>
+        </Reveal>
+
+        <Reveal className="dm">
+          <p className="eyebrow">Our work</p>
+          <TypedHeading text="DIGITAL MARKETING CAMPAIGN LINKS" accent="MARKETING" />
+          <div className="dm__grid">
+            {digitalMarketing.map((campaign) => (
+              <a
+                key={campaign.id}
+                className="dm__card"
+                href={campaign.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${campaign.title} digital marketing campaign`}
+              >
+                <span className="dm__brand" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                </span>
+                <span className="dm__info">
+                  <small>{campaign.category}</small>
+                  <b>{campaign.title}</b>
+                </span>
+                <span className="dm__go" aria-hidden="true"><Arrow dir="right" /></span>
+              </a>
+            ))}
           </div>
         </Reveal>
 
