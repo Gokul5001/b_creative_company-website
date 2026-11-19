@@ -100,7 +100,7 @@ export const projects = [
 // graphic design projects: image = file name (no extension) in src/assets/work
 export const designs = [
   { id: 'dental-care', title: 'Dental Care', category: 'Healthcare & Beauty', image: 'dental-care' },
-  { id: 'aurora-ring', title: 'A Spark of Royalty', category: 'Jewellery', image: 'aurora-ring' },
+  { id: 'aurora-ring', title: 'A Spark of Royalty', category: 'Jewellery', image: 'aurora-ring', folder: 'project_ring' },
   { id: 'loreal-serum', title: 'Drops of Shine', category: 'Healthcare & Beauty', image: 'loreal-serum' },
   { id: 'obhur-living-2', title: 'Obhur Living 2', category: 'Real Estate', image: 'obhur-living-2' },
 ]
