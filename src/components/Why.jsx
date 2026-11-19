@@ -37,16 +37,18 @@ export default function Why() {
           <div className="ach__grid">
             {achievements.map((a) => (
               <div className="ach__item" key={a.year}>
-                <div className="ach__year"><span>{a.year}</span><i></i></div>
-                <p>
-                  We&rsquo;re proud to provide {a.lead.toLowerCase()}{' '}
-                  {a.names.map((n, i) => (
-                    <span key={n}>
-                      <strong>{n}</strong>{i < a.names.length - 2 ? ', ' : i === a.names.length - 2 ? ' and ' : ''}
-                    </span>
-                  ))}
-                  {a.tail ? <> {a.tail}</> : '.'}
-                </p>
+                <div className="ach__card">
+                  <div className="ach__year"><span>{a.year}</span><i></i></div>
+                  <p>
+                    We&rsquo;re proud to provide {a.lead.toLowerCase()}{' '}
+                    {a.names.map((n, i) => (
+                      <span key={n}>
+                        <strong>{n}</strong>{i < a.names.length - 2 ? ', ' : i === a.names.length - 2 ? ' and ' : ''}
+                      </span>
+                    ))}
+                    {a.tail ? <> {a.tail}</> : '.'}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
