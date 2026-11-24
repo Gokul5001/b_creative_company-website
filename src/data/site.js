@@ -224,7 +224,7 @@ export const team = [
   { id: 'bilal-mustafa', name: 'Muhammad Bilal Mustafa', role: 'Application Developer', email: 'itx.bmustafa@gmail.com' },
   { id: 'palwasha', name: 'Palwasha Khan', role: 'Website Developer', email: 'palwashasheikh229@gmail.com' },
   { id: 'zubaria', name: 'Zubaria Khalid', role: 'Graphic Designer', email: 'zubariadesign@gmail.com' },
-  { id: 'gokul', name: 'Gokul Kannan', role: 'Website Developer', email: 'gokulkannankh@gmail.com' },
+  // { id: 'gokul', name: 'Gokul Kannan', role: 'Website Developer', email: 'gokulkannankh@gmail.com' },
   { id: 'tania', name: 'Tania Tanveer', role: 'Website Developer & Project Collaborator', email: 'taniatanveer658@gmail.com' },
   { id: 'himra', name: 'Himra Imran', role: 'Graphic Designer', email: 'himraimran2000@gmail.com' },
   { id: 'nabeela', name: 'Nabeela Jawad', role: 'Social Media Manager', email: 'nabilajawad333@gmail.com' },
